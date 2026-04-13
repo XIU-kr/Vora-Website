@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ko" data-lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#08090c" />
+<meta name="color-scheme" content="dark" />
+
+<title data-ko="Vora — AI 이미지 편집기" data-en="Vora — The AI-powered image editor">Vora — AI 이미지 편집기</title>
+<meta name="description" data-ko-content="Photoshop급 레이어·조정·AI 복원을 한 앱에서. 데스크톱 이미지 편집기 Vora를 Windows, macOS, Linux에서 무료로 내려받으세요." data-en-content="Photoshop-class layers, adjustments and AI restore in one desktop app. Download Vora free for Windows, macOS and Linux." content="Photoshop급 레이어·조정·AI 복원을 한 앱에서. 데스크톱 이미지 편집기 Vora를 Windows, macOS, Linux에서 무료로 내려받으세요." />
+<meta name="author" content="XIU" />
+<meta name="keywords" content="Vora, AI image editor, Photoshop alternative, Tauri, Big-LaMa, inpainting, 이미지 편집기, AI 복원, 레이어 편집" />
+
+<link rel="canonical" href="https://vora.xiu.kr/" />
+<link rel="alternate" hreflang="ko" href="https://vora.xiu.kr/" />
+<link rel="alternate" hreflang="en" href="https://vora.xiu.kr/?lang=en" />
+<link rel="alternate" hreflang="x-default" href="https://vora.xiu.kr/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Vora" />
+<meta property="og:url" content="https://vora.xiu.kr/" />
+<meta property="og:title" content="Vora — AI 이미지 편집기" />
+<meta property="og:description" content="Photoshop급 레이어·조정·AI 복원을 한 데스크톱 앱에서." />
+<meta property="og:image" content="https://vora.xiu.kr/assets/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:locale:alternate" content="en_US" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Vora — The AI-powered image editor" />
+<meta name="twitter:description" content="Photoshop-class layers, adjustments and AI restore in one desktop app." />
+<meta name="twitter:image" content="https://vora.xiu.kr/assets/og.png" />
+
+<link rel="icon" type="image/png" href="/assets/logo.png" />
+<link rel="apple-touch-icon" href="/assets/logo.png" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8QDZQ70QN6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-8QDZQ70QN6', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+</script>
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link rel="stylesheet" href="/assets/style.css" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Vora",
+  "description": "AI-powered image editing desktop app for Mac, Windows and Linux — Photoshop-class layers, adjustments and AI restore.",
+  "applicationCategory": "DesignApplication",
+  "operatingSystem": "Windows, macOS, Linux",
+  "softwareVersion": "0.0.1",
+  "downloadUrl": "https://github.com/XIU-kr/Vora/releases/latest",
+  "url": "https://vora.xiu.kr/",
+  "image": "https://vora.xiu.kr/assets/og.png",
+  "license": "https://opensource.org/licenses/MIT",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "XIU",
+    "url": "https://xiu.kr",
+    "sameAs": ["https://github.com/XIU-kr"]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Vora",
+  "url": "https://vora.xiu.kr/",
+  "inLanguage": ["ko-KR", "en-US"]
+}
+</script>
+</head>
+
+<body>
+
+<a class="skip" href="#main" data-ko="본문으로 건너뛰기" data-en="Skip to content">본문으로 건너뛰기</a>
+
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="/" aria-label="Vora home">
+      <img class="brand-mark" src="/assets/logo.png" alt="" width="28" height="28" decoding="async"/>
+      <span class="brand-name">Vora</span>
+    </a>
+    <nav class="nav-links" aria-label="primary">
+      <a href="#features" data-ko="특징" data-en="Features">특징</a>
+      <a href="#toolkit" data-ko="기능" data-en="Toolkit">기능</a>
+      <a href="#shortcuts" data-ko="단축키" data-en="Shortcuts">단축키</a>
+      <a href="#download" data-ko="다운로드" data-en="Download">다운로드</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-set-lang="ko" class="is-active">KO</button>
+        <button type="button" data-set-lang="en">EN</button>
+      </div>
+      <a class="btn btn-ghost btn-sm" href="/github" rel="noopener">
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        <span>GitHub</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" data-reveal>
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <span class="pill">
+        <span class="pill-dot"></span>
+        <span data-ko="오픈소스 (MIT)" data-en="Open source (MIT)">오픈소스 (MIT)</span>
+      </span>
+      <h1 class="h1">
+        <span class="grad" data-ko="AI가 더해진" data-en="A Photoshop-class">AI가 더해진</span><br/>
+        <span data-ko="Photoshop급" data-en="editor,">Photoshop급</span><br/>
+        <span data-ko="편집기." data-en="powered by AI.">편집기.</span>
+      </h1>
+      <p class="lede" data-ko="레이어, 조정, 마스크, 그리고 AI 복원까지. 구독 없이 설치 한 번으로 끝내는 데스크톱 이미지 편집기." data-en="Layers, adjustments, masks and AI restore — in a single desktop app. No subscription, no sign-in, one install.">레이어, 조정, 마스크, 그리고 AI 복원까지. 구독 없이 설치 한 번으로 끝내는 데스크톱 이미지 편집기.</p>
+
+      <div class="cta-row">
+        <div class="dl" id="dl">
+          <a class="btn btn-primary dl-main" id="dl-main" href="/download" data-os-label="">
+            <svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 11.5 3.5 7l1.4-1.4L7 7.7V1h2v6.7l2.1-2.1L12.5 7 8 11.5ZM2 13h12v2H2v-2Z"/></svg>
+            <span class="dl-label"><span data-ko="다운로드" data-en="Download">다운로드</span> · <span id="dl-os-name">Windows</span></span>
+          </a>
+          <button class="btn btn-primary dl-toggle" id="dl-toggle" aria-haspopup="menu" aria-expanded="false" aria-label="Select OS" type="button">
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="m4 6 4 4 4-4H4Z"/></svg>
+          </button>
+          <ul class="dl-menu" id="dl-menu" role="menu" hidden>
+            <li role="none"><a role="menuitem" href="/download" data-os="windows"><b>Windows</b><span>.exe installer · x64</span></a></li>
+            <li role="none"><a role="menuitem" href="/download" data-os="macos"><b>macOS</b><span>.dmg · Universal (Intel + Apple Silicon)</span></a></li>
+            <li role="none"><a role="menuitem" href="/download" data-os="linux-deb"><b>Linux</b><span>.deb · Debian / Ubuntu</span></a></li>
+            <li role="none"><a role="menuitem" href="/download" data-os="linux-rpm"><b>Linux</b><span>.rpm · RHEL / Fedora</span></a></li>
+          </ul>
+        </div>
+        <a class="btn btn-ghost" href="/github" rel="noopener">
+          <span data-ko="GitHub에서 보기" data-en="View on GitHub">GitHub에서 보기</span>
+        </a>
+      </div>
+
+      <ul class="stats">
+        <li>
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M5 20h14v-2H5v2ZM12 3 5 10h4v6h6v-6h4l-7-7Z"/></svg>
+          <div>
+            <b data-ko="가벼운 설치" data-en="Light install">가벼운 설치</b>
+            <span>50–100 MB</span>
+          </div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M4 6h16v10H4V6Zm0 12h16v2H4v-2Zm2-10v6h12V8H6Z"/></svg>
+          <div>
+            <b data-ko="크로스 플랫폼" data-en="Cross-platform">크로스 플랫폼</b>
+            <span>Windows · macOS · Linux</span>
+          </div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.5 9.3 8 11 4.5-1.7 8-6 8-11V5l-8-3Zm-1 13-4-4 1.4-1.4L11 12.2l4.6-4.6L17 9l-6 6Z"/></svg>
+          <div>
+            <b data-ko="MIT 오픈소스" data-en="MIT Open Source">MIT 오픈소스</b>
+            <span data-ko="구독 없이 무료" data-en="Free, no subscription">구독 없이 무료</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="hero-art" aria-hidden="true">
+      <div class="hero-glow"></div>
+      <div class="hero-frame">
+        <div class="hero-frame-bar"><span></span><span></span><span></span></div>
+        <img src="https://raw.githubusercontent.com/XIU-kr/Vora/main/docs/preview.png"
+             alt="Vora editor preview"
+             width="1600" height="1000"
+             fetchpriority="high" loading="eager" decoding="async"
+             onerror="this.closest('.hero-frame').classList.add('no-img');this.remove();"/>
+        <div class="hero-frame-fallback">
+          <div class="ff-tools"></div>
+          <div class="ff-canvas"></div>
+          <div class="ff-panel"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="section" data-reveal>
+  <div class="container">
+    <header class="sec-head">
+      <span class="eyebrow" data-ko="특징" data-en="Why Vora">특징</span>
+      <h2 data-ko="프로 도구를, 설정 없이." data-en="Pro tools, zero setup.">프로 도구를, 설정 없이.</h2>
+      <p data-ko="무거운 런타임도, 클라우드 로그인도 없습니다. 다운로드해서 바로 작업을 시작하세요." data-en="No heavy runtimes, no cloud sign-ins. Download, install, and start editing.">무거운 런타임도, 클라우드 로그인도 없습니다. 다운로드해서 바로 작업을 시작하세요.</p>
+    </header>
+
+    <div class="grid-3">
+      <article class="card" data-reveal>
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 2 3 7v5c0 5 3.5 9.5 9 10 5.5-.5 9-5 9-10V7l-9-5Zm-1 14-4-4 1.4-1.4L11 13.2l4.6-4.6L17 10l-6 6Z"/></svg>
+        </div>
+        <h3 data-ko="AI 복원" data-en="AI Restore">AI 복원</h3>
+        <p data-ko="Big-LaMa 인페인팅으로 지우고 싶은 대상을 자연스럽게 제거합니다. 배경과 질감을 인식해 한 번의 클릭으로 깔끔하게." data-en="Big-LaMa inpainting removes unwanted objects with content-aware fill — one click, clean results that match the surrounding texture.">Big-LaMa 인페인팅으로 지우고 싶은 대상을 자연스럽게 제거합니다. 배경과 질감을 인식해 한 번의 클릭으로 깔끔하게.</p>
+      </article>
+
+      <article class="card" data-reveal>
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M4 4h6v6H4V4Zm10 0h6v6h-6V4ZM4 14h6v6H4v-6Zm10 3 2-2 3 3-2 2-3-3Z"/></svg>
+        </div>
+        <h3 data-ko="프로급 선택 도구" data-en="Pro-grade Selection">프로급 선택 도구</h3>
+        <p data-ko="매직 완드·라소·마퀴와 Invert / Expand / Contract / Feather. 선택 영역에 지우기·채우기·배경 교체·복원까지 바로 적용합니다." data-en="Magic Wand, Lasso, Marquees, plus Invert / Expand / Contract / Feather — erase, fill, replace or restore right from the selection.">매직 완드·라소·마퀴와 Invert / Expand / Contract / Feather. 선택 영역에 지우기·채우기·배경 교체·복원까지 바로 적용합니다.</p>
+      </article>
+
+      <article class="card" data-reveal>
+        <div class="card-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 2 2 7l10 5 10-5-10-5Zm0 9L2 16l10 5 10-5-10-5Z"/></svg>
+        </div>
+        <h3 data-ko="논파괴 레이어" data-en="Non-destructive Layers">논파괴 레이어</h3>
+        <p data-ko="12가지 블렌드 모드, 5가지 레이어 이펙트, 곡선·레벨·색상 균형 등 조정 레이어를 원본 훼손 없이 적용합니다." data-en="12 blend modes, 5 layer effects, and Curves / Levels / Color Balance adjustment layers — all non-destructive.">12가지 블렌드 모드, 5가지 레이어 이펙트, 곡선·레벨·색상 균형 등 조정 레이어를 원본 훼손 없이 적용합니다.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLKIT -->
+<section id="toolkit" class="section section-muted" data-reveal>
+  <div class="container">
+    <header class="sec-head">
+      <span class="eyebrow" data-ko="기능" data-en="Toolkit">기능</span>
+      <h2 data-ko="필요한 도구는 전부 들어 있습니다." data-en="Every tool you expect, in one place.">필요한 도구는 전부 들어 있습니다.</h2>
+    </header>
+
+    <div class="grid-2">
+      <div class="kit" data-reveal>
+        <h3 data-ko="드로잉 & 페인팅" data-en="Drawing &amp; Painting">드로잉 &amp; 페인팅</h3>
+        <ul>
+          <li data-ko="펜 · 도형(사각/원/선/화살/베지어)" data-en="Pen, shapes (rect / ellipse / line / arrow / bezier)">펜 · 도형(사각/원/선/화살/베지어)</li>
+          <li data-ko="클론 스탬프 · 힐링 브러시 · 히스토리 브러시" data-en="Clone Stamp, Healing Brush, History Brush">클론 스탬프 · 힐링 브러시 · 히스토리 브러시</li>
+          <li data-ko="그라디언트 레이어 생성" data-en="Gradient layer creation">그라디언트 레이어 생성</li>
+          <li data-ko="[ / ] 브러시 크기 · D/X 색상 제어" data-en="[ / ] brush size · D/X color controls">[ / ] 브러시 크기 · D/X 색상 제어</li>
+        </ul>
+      </div>
+
+      <div class="kit" data-reveal>
+        <h3 data-ko="이미지" data-en="Image">이미지</h3>
+        <ul>
+          <li data-ko="이미지 크기 · 캔버스 크기(9-앵커) · 자동 트림" data-en="Image Size, Canvas Size (9-anchor), Trim">이미지 크기 · 캔버스 크기(9-앵커) · 자동 트림</li>
+          <li data-ko="90°/180°/270° 회전, 좌우·상하 반전" data-en="Rotate 90°/180°/270°, flip horizontal/vertical">90°/180°/270° 회전, 좌우·상하 반전</li>
+          <li data-ko="자동 향상 · 자동 레벨 · 샤픈" data-en="Auto Enhance, Auto Levels, Sharpen">자동 향상 · 자동 레벨 · 샤픈</li>
+          <li data-ko="노이즈 추가 · 색상 교체" data-en="Add Noise, Color Replace">노이즈 추가 · 색상 교체</li>
+        </ul>
+      </div>
+
+      <div class="kit" data-reveal>
+        <h3 data-ko="편집" data-en="Edit">편집</h3>
+        <ul>
+          <li data-ko="Fill (Shift+F5) · Stroke (inside / center / outside)" data-en="Fill (Shift+F5) · Stroke (inside / center / outside)">Fill (Shift+F5) · Stroke (inside / center / outside)</li>
+          <li data-ko="Copy Merged (Ctrl+Shift+C)" data-en="Copy Merged (Ctrl+Shift+C)">Copy Merged (Ctrl+Shift+C)</li>
+          <li data-ko="이름 있는 실행 취소/다시 실행" data-en="Full undo/redo history with named steps">이름 있는 실행 취소/다시 실행</li>
+          <li data-ko="선택 영역에 붙여넣기 (Ctrl+Shift+V)" data-en="Paste Into selection (Ctrl+Shift+V)">선택 영역에 붙여넣기 (Ctrl+Shift+V)</li>
+        </ul>
+      </div>
+
+      <div class="kit" data-reveal>
+        <h3 data-ko="조정 레이어" data-en="Adjustments">조정 레이어</h3>
+        <ul>
+          <li data-ko="밝기/대비 · 레벨 (Ctrl+L) · 곡선 (Ctrl+M)" data-en="Brightness/Contrast, Levels (Ctrl+L), Curves (Ctrl+M)">밝기/대비 · 레벨 (Ctrl+L) · 곡선 (Ctrl+M)</li>
+          <li data-ko="색조/채도 (Ctrl+U) · 색상 균형" data-en="Hue/Saturation (Ctrl+U), Color Balance">색조/채도 (Ctrl+U) · 색상 균형</li>
+          <li data-ko="모든 조정은 논파괴 레이어로 적용" data-en="All adjustments applied as non-destructive layers">모든 조정은 논파괴 레이어로 적용</li>
+        </ul>
+      </div>
+
+      <div class="kit" data-reveal>
+        <h3 data-ko="프로젝트 & 내보내기" data-en="Project &amp; Export">프로젝트 &amp; 내보내기</h3>
+        <ul>
+          <li data-ko=".vora 프로젝트 파일 — 전체 페이지·레이어를 하나의 JSON으로" data-en=".vora project files — all pages + layers in a single JSON">.vora 프로젝트 파일 — 전체 페이지·레이어를 하나의 JSON으로</li>
+          <li data-ko="PNG · JPG · WebP · 멀티페이지 PDF · 편집 가능한 PPTX" data-en="PNG, JPG, WebP, multi-page PDF, editable-text PPTX">PNG · JPG · WebP · 멀티페이지 PDF · 편집 가능한 PPTX</li>
+          <li data-ko="배치 내보내기 · 1×–8× 스케일" data-en="Batch export · 1×–8× scale">배치 내보내기 · 1×–8× 스케일</li>
+          <li data-ko=".vora 파일 확장자 연결 — 더블클릭으로 바로 열기" data-en=".vora file-association — double-click to open">.vora 파일 확장자 연결 — 더블클릭으로 바로 열기</li>
+        </ul>
+      </div>
+
+      <div class="kit" data-reveal>
+        <h3 data-ko="작업 흐름" data-en="Workflow">작업 흐름</h3>
+        <ul>
+          <li data-ko="멀티페이지 프로젝트 (필름스트립)" data-en="Multi-page projects (filmstrip)">멀티페이지 프로젝트 (필름스트립)</li>
+          <li data-ko="커맨드 팔레트 (Ctrl+K) · 퀵마스크 (Q)" data-en="Command palette (Ctrl+K), Quick Mask (Q)">커맨드 팔레트 (Ctrl+K) · 퀵마스크 (Q)</li>
+          <li data-ko="눈금자·그리드·가이드 · 100% 줌 (Ctrl+1)" data-en="Rulers, grid, guides · Actual Size (Ctrl+1)">눈금자·그리드·가이드 · 100% 줌 (Ctrl+1)</li>
+          <li data-ko="자동 저장 · 다음 실행 시 복원 프롬프트" data-en="Auto-save · restore prompt on next launch">자동 저장 · 다음 실행 시 복원 프롬프트</li>
+          <li data-ko="OS 언어 자동 감지 (한국어 / 영어)" data-en="OS-language auto-detect (Korean / English)">OS 언어 자동 감지 (한국어 / 영어)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATS -->
+<section id="formats" class="section" data-reveal>
+  <div class="container">
+    <header class="sec-head">
+      <span class="eyebrow" data-ko="파일 형식" data-en="Formats">파일 형식</span>
+      <h2 data-ko="쓰는 형식, 전부 지원합니다." data-en="Every format you actually use.">쓰는 형식, 전부 지원합니다.</h2>
+    </header>
+    <div class="formats">
+      <span class="fmt">PNG</span>
+      <span class="fmt">JPG</span>
+      <span class="fmt">WebP</span>
+      <span class="fmt">PDF<small data-ko="멀티 페이지" data-en="multi-page">멀티 페이지</small></span>
+      <span class="fmt fmt-hl">PPTX<small data-ko="편집 가능 텍스트" data-en="editable text">편집 가능 텍스트</small></span>
+    </div>
+    <p class="fmt-note" data-ko="Vora에서 만든 PPTX는 PowerPoint에서 그대로 편집할 수 있습니다. 텍스트 레이어가 도형이 아닌 실제 텍스트로 보존됩니다." data-en="PPTX files exported from Vora open as editable decks in PowerPoint — text layers stay as real, editable text.">Vora에서 만든 PPTX는 PowerPoint에서 그대로 편집할 수 있습니다. 텍스트 레이어가 도형이 아닌 실제 텍스트로 보존됩니다.</p>
+  </div>
+</section>
+
+<!-- TECH -->
+<section id="tech" class="section section-muted" data-reveal>
+  <div class="container grid-split">
+    <div>
+      <span class="eyebrow" data-ko="아키텍처" data-en="Architecture">아키텍처</span>
+      <h2 data-ko="Electron이 아닌 Tauri 2로 만들었습니다." data-en="Built on Tauri 2 — not Electron.">Electron이 아닌 Tauri 2로 만들었습니다.</h2>
+      <p class="lede" data-ko="시스템 웹뷰 + Rust 백엔드로 설치 크기는 50–100MB, 메모리 사용량은 Electron의 절반 수준입니다. 빠른 실행, 가벼운 용량, 네이티브 성능을 동시에." data-en="A system webview with a Rust backend makes the installer ~50–100MB and the memory footprint about half of Electron — fast launch, small disk, native performance.">시스템 웹뷰 + Rust 백엔드로 설치 크기는 50–100MB, 메모리 사용량은 Electron의 절반 수준입니다. 빠른 실행, 가벼운 용량, 네이티브 성능을 동시에.</p>
+      <ul class="bullets">
+        <li data-ko="파이썬 런타임 번들 — 별도 설치 불필요" data-en="Bundled Python runtime — no manual setup">파이썬 런타임 번들 — 별도 설치 불필요</li>
+        <li data-ko="관리자 권한 없이 AI 의존성 자동 설치" data-en="AI dependencies installed automatically — no admin rights">관리자 권한 없이 AI 의존성 자동 설치</li>
+        <li data-ko="GitHub Actions 기반 자동 업데이트" data-en="Self-updating installer via GitHub Actions">GitHub Actions 기반 자동 업데이트</li>
+        <li data-ko="오픈소스 · MIT 라이선스" data-en="Open source · MIT license">오픈소스 · MIT 라이선스</li>
+      </ul>
+    </div>
+
+    <aside class="compare">
+      <div class="compare-row compare-head">
+        <span></span><span>Vora</span><span data-ko="일반 Electron 앱" data-en="Typical Electron app">일반 Electron 앱</span>
+      </div>
+      <div class="compare-row">
+        <span data-ko="설치 크기" data-en="Installer">설치 크기</span>
+        <span class="good">50–100 MB</span>
+        <span class="bad">500 MB+</span>
+      </div>
+      <div class="compare-row">
+        <span data-ko="메모리" data-en="Memory">메모리</span>
+        <span class="good" data-ko="절반 수준" data-en="~½">절반 수준</span>
+        <span class="bad" data-ko="표준" data-en="Baseline">표준</span>
+      </div>
+      <div class="compare-row">
+        <span data-ko="구독" data-en="Subscription">구독</span>
+        <span class="good" data-ko="없음" data-en="None">없음</span>
+        <span class="bad" data-ko="다수" data-en="Common">다수</span>
+      </div>
+      <div class="compare-row">
+        <span data-ko="라이선스" data-en="License">라이선스</span>
+        <span class="good">MIT</span>
+        <span class="bad" data-ko="독점" data-en="Proprietary">독점</span>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- SHORTCUTS -->
+<section id="shortcuts" class="section" data-reveal>
+  <div class="container">
+    <header class="sec-head">
+      <span class="eyebrow" data-ko="단축키" data-en="Shortcuts">단축키</span>
+      <h2 data-ko="Photoshop과 동일한 키매핑." data-en="1:1 Photoshop key mapping.">Photoshop과 동일한 키매핑.</h2>
+      <p data-ko="기존 워크플로우를 그대로 옮겨 오세요. 주요 단축키 30여 개가 동일하게 동작합니다." data-en="Bring your workflow with you — 30+ core shortcuts work exactly the same.">기존 워크플로우를 그대로 옮겨 오세요. 주요 단축키 30여 개가 동일하게 동작합니다.</p>
+    </header>
+
+    <div class="grid-3">
+      <div class="kit" data-reveal>
+        <h3 data-ko="도구" data-en="Tools">도구</h3>
+        <dl class="kbd">
+          <dt>V</dt><dd data-ko="이동" data-en="Move">이동</dd>
+          <dt>M</dt><dd data-ko="사각 선택" data-en="Rect marquee">사각 선택</dd>
+          <dt>L</dt><dd data-ko="올가미" data-en="Lasso">올가미</dd>
+          <dt>W</dt><dd data-ko="매직 완드" data-en="Magic Wand">매직 완드</dd>
+          <dt>B</dt><dd data-ko="브러시/펜" data-en="Brush / Pen">브러시/펜</dd>
+          <dt>T</dt><dd data-ko="텍스트" data-en="Text">텍스트</dd>
+          <dt>S</dt><dd data-ko="클론 스탬프" data-en="Clone Stamp">클론 스탬프</dd>
+          <dt>Q</dt><dd data-ko="퀵 마스크" data-en="Quick Mask">퀵 마스크</dd>
+        </dl>
+      </div>
+
+      <div class="kit" data-reveal>
+        <h3 data-ko="편집" data-en="Editing">편집</h3>
+        <dl class="kbd">
+          <dt>Ctrl+Z</dt><dd data-ko="실행 취소" data-en="Undo">실행 취소</dd>
+          <dt>Ctrl+J</dt><dd data-ko="레이어 복제" data-en="Duplicate layer">레이어 복제</dd>
+          <dt>Ctrl+E</dt><dd data-ko="레이어 병합" data-en="Merge layers">레이어 병합</dd>
+          <dt>Ctrl+T</dt><dd data-ko="자유 변형" data-en="Free Transform">자유 변형</dd>
+          <dt>Ctrl+A</dt><dd data-ko="전체 선택" data-en="Select All">전체 선택</dd>
+          <dt>Ctrl+Shift+C</dt><dd data-ko="병합 복사" data-en="Copy Merged">병합 복사</dd>
+          <dt>Shift+F5</dt><dd data-ko="채우기" data-en="Fill">채우기</dd>
+          <dt>Ctrl+K</dt><dd data-ko="커맨드 팔레트" data-en="Command Palette">커맨드 팔레트</dd>
+        </dl>
+      </div>
+
+      <div class="kit" data-reveal>
+        <h3 data-ko="보기 / 조정" data-en="View / Adjust">보기 / 조정</h3>
+        <dl class="kbd">
+          <dt>Ctrl+R</dt><dd data-ko="눈금자" data-en="Rulers">눈금자</dd>
+          <dt>Ctrl+'</dt><dd data-ko="그리드" data-en="Grid">그리드</dd>
+          <dt>Ctrl+1</dt><dd data-ko="실제 크기" data-en="Actual size">실제 크기</dd>
+          <dt>Ctrl+0</dt><dd data-ko="화면에 맞추기" data-en="Fit view">화면에 맞추기</dd>
+          <dt>Space</dt><dd data-ko="일시적 이동" data-en="Pan (hold)">일시적 이동</dd>
+          <dt>Ctrl+L</dt><dd data-ko="레벨" data-en="Levels">레벨</dd>
+          <dt>Ctrl+M</dt><dd data-ko="곡선" data-en="Curves">곡선</dd>
+          <dt>Ctrl+U</dt><dd data-ko="색조/채도" data-en="Hue/Saturation">색조/채도</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="download" class="section section-muted" data-reveal>
+  <div class="container">
+    <header class="sec-head">
+      <span class="eyebrow" data-ko="다운로드" data-en="Download">다운로드</span>
+      <h2 data-ko="플랫폼을 선택하세요." data-en="Pick your platform.">플랫폼을 선택하세요.</h2>
+      <p data-ko="모든 다운로드는 GitHub 릴리스의 최신 버전으로 연결됩니다." data-en="All downloads link to the latest GitHub release.">모든 다운로드는 GitHub 릴리스의 최신 버전으로 연결됩니다.</p>
+      <p>
+        <img src="https://img.shields.io/github/v/release/XIU-kr/Vora?label=latest&color=22d3ee&style=for-the-badge"
+             alt="Latest release" width="168" height="28" loading="lazy" />
+      </p>
+    </header>
+
+    <div class="grid-4">
+      <a class="os-card" href="/download" data-os="windows" data-reveal>
+        <svg class="os-ic" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M3 5.5 11 4v8H3V5.5Zm0 13V12h8v8l-8-1.5ZM12 4l9-1.5V12h-9V4Zm0 8h9v9.5L12 20v-8Z"/></svg>
+        <h3>Windows</h3>
+        <p>Vora_<i>x.x.x</i>_x64-setup.exe</p>
+        <span class="os-go" data-ko="받기 →" data-en="Download →">받기 →</span>
+      </a>
+      <a class="os-card" href="/download" data-os="macos" data-reveal>
+        <svg class="os-ic" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M16.5 2c.1 1.3-.4 2.5-1.2 3.4-.8.9-2.1 1.6-3.3 1.5-.1-1.3.5-2.5 1.3-3.3.9-.9 2.2-1.5 3.2-1.6Zm3.8 16c-.6 1.2-1.2 2.4-2.2 3.5-.8.9-1.7 1.9-3 1.9s-1.7-.8-3.2-.8-2 .8-3.2.8-2.2-1-3-2C3 18.4 2 13.2 4.3 9.7c1.1-1.7 3-2.7 4.9-2.8 1.3 0 2.5.9 3.3.9s2.3-1.1 3.9-.9c.6 0 2.4.3 3.5 2-.1.1-2 1.2-2 3.6 0 2.8 2.5 3.7 2.5 3.7s-.1.3-.1 1.8Z"/></svg>
+        <h3>macOS</h3>
+        <p>Vora_<i>x.x.x</i>_universal.dmg</p>
+        <span class="os-go" data-ko="받기 →" data-en="Download →">받기 →</span>
+      </a>
+      <a class="os-card" href="/download" data-os="linux-deb" data-reveal>
+        <svg class="os-ic" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M12 2c-2.3 0-4 2-4 5 0 1.4.4 2.6 1 3.4-.8 1-2.8 2.9-3.6 5.3-.6 1.8-.2 3.3.8 4l.8-1.4c-.4-.3-.6-1 .1-2.3.8-1.6 2.1-3.4 3-4.4.4.3 1 .4 1.9.4s1.5-.2 2-.4c.9 1 2.2 2.8 3 4.4.7 1.4.5 2 .1 2.3l.8 1.4c1-.7 1.4-2.2.8-4-.8-2.4-2.8-4.3-3.6-5.3.6-.8 1-2 1-3.4 0-3-1.7-5-4.1-5Z"/></svg>
+        <h3>Linux · Debian</h3>
+        <p>Vora_<i>x.x.x</i>_amd64.deb</p>
+        <span class="os-go" data-ko="받기 →" data-en="Download →">받기 →</span>
+      </a>
+      <a class="os-card" href="/download" data-os="linux-rpm" data-reveal>
+        <svg class="os-ic" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M12 2 4 6v8l8 4 8-4V6l-8-4Zm0 2.3 6 3v7.4l-6 3-6-3V7.3l6-3Z"/></svg>
+        <h3>Linux · RHEL</h3>
+        <p>Vora-<i>x.x.x</i>-1.x86_64.rpm</p>
+        <span class="os-go" data-ko="받기 →" data-en="Download →">받기 →</span>
+      </a>
+    </div>
+
+    <p class="dl-hint" data-ko="설치 후 첫 AI 기능 실행 시 필요한 파이썬 의존성이 앱 디렉터리에 자동으로 설치됩니다. 관리자 권한이 필요 없으며, 제거 시 모든 파일이 깨끗하게 삭제됩니다." data-en="On first use of an AI feature, required Python packages install into the app directory. No admin rights needed, and uninstall removes everything cleanly.">설치 후 첫 AI 기능 실행 시 필요한 파이썬 의존성이 앱 디렉터리에 자동으로 설치됩니다. 관리자 권한이 필요 없으며, 제거 시 모든 파일이 깨끗하게 삭제됩니다.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>
+      <div class="brand">
+        <img class="brand-mark" src="/assets/logo.png" alt="" width="24" height="24" decoding="async" loading="lazy"/>
+        <span class="brand-name">Vora</span>
+      </div>
+      <p class="muted" data-ko="© 2026 XIU · MIT License · Built with Tauri 2" data-en="© 2026 XIU · MIT License · Built with Tauri 2">© 2026 XIU · MIT License · Built with Tauri 2</p>
+    </div>
+    <nav aria-label="footer">
+      <a href="/github" rel="noopener">GitHub</a>
+      <a href="/issues" rel="noopener" data-ko="버그 제보" data-en="Report a bug">버그 제보</a>
+      <a href="/download" data-ko="릴리스" data-en="Releases">릴리스</a>
+      <a href="/privacy/" data-ko="개인정보처리방침" data-en="Privacy">개인정보처리방침</a>
+      <a href="https://xiu.kr" rel="noopener">xiu.kr</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="/assets/app.js" defer></script>
+</body>
+</html>
