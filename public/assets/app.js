@@ -84,20 +84,34 @@
   const dlToggle = document.getElementById('dl-toggle');
   const dlMenu = document.getElementById('dl-menu');
 
-  // State: os key → asset url (filled from GitHub API, fallback to releases page)
+  // State: os key → asset url. Seeded from current HTML hrefs so the first
+  // paint already has direct download links; overwritten by the GitHub API
+  // fetch below when a newer release lands.
   const osUrls = {
     windows: FALLBACK_URL,
     macos: FALLBACK_URL,
     'linux-deb': FALLBACK_URL,
     'linux-rpm': FALLBACK_URL
   };
+  document.querySelectorAll('a[data-os]').forEach(a => {
+    const key = a.getAttribute('data-os');
+    const h = a.getAttribute('href');
+    if (key && h && /^https?:\/\//.test(h)) osUrls[key] = h;
+  });
 
   let currentOS = detectOS();
 
   const renderMenu = () => {
     document.querySelectorAll('a[data-os]').forEach(a => {
       const key = a.getAttribute('data-os');
-      a.href = osUrls[key] || FALLBACK_URL;
+      const url = osUrls[key];
+      if (url) {
+        a.href = url;
+        a.setAttribute('download', '');
+      } else {
+        a.href = FALLBACK_URL;
+        a.removeAttribute('download');
+      }
     });
   };
 
@@ -106,7 +120,16 @@
     currentOS = os;
     localStorage.setItem(LS_OS, os);
     if (dlName) dlName.textContent = labelFor(os);
-    if (dlMain) dlMain.href = osUrls[os] || FALLBACK_URL;
+    if (dlMain) {
+      const url = osUrls[os];
+      if (url && url !== FALLBACK_URL) {
+        dlMain.href = url;
+        dlMain.setAttribute('download', '');
+      } else {
+        dlMain.href = FALLBACK_URL;
+        dlMain.removeAttribute('download');
+      }
+    }
   };
 
   renderMenu();

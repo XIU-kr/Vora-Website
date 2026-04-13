@@ -216,34 +216,48 @@ ul, dl { margin: 0; padding: 0; list-style: none; }
 
 /* stats */
 .stats {
-  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
-  border-top: 1px solid var(--border); padding-top: 24px;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  border-top: 1px solid var(--border); padding-top: 28px;
 }
 .stats li {
-  display: flex; align-items: center; gap: 12px;
-  padding: 12px 14px;
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
-  border-radius: 12px;
+  position: relative;
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 18px 18px 18px 20px;
+  background:
+    linear-gradient(var(--bg-elev), var(--bg-elev)) padding-box,
+    linear-gradient(180deg, color-mix(in srgb, var(--accent-1) 30%, var(--border)), var(--border)) border-box;
+  border: 1px solid transparent;
+  border-radius: 14px;
   min-width: 0;
+  overflow: hidden;
+  transition: transform .2s, box-shadow .2s;
 }
-.stats li > svg {
-  flex: 0 0 auto;
-  width: 34px; height: 34px; padding: 8px; box-sizing: border-box;
-  border-radius: 9px;
-  color: var(--accent-1);
-  background: linear-gradient(180deg, rgba(34,211,238,.15), rgba(168,85,247,.15));
-  border: 1px solid var(--border-strong);
+.stats li::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(34,211,238,.08), transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(168,85,247,.08), transparent 50%);
+  pointer-events: none;
 }
-.stats li > div { display: flex; flex-direction: column; min-width: 0; }
+.stats li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(99,102,241,.15);
+}
 .stats b {
-  font-size: 14px; font-weight: 700; letter-spacing: -0.01em; color: var(--fg);
-  line-height: 1.2;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  color: var(--muted);
+  text-transform: uppercase;
+  position: relative;
 }
 .stats span {
-  font-size: 12.5px; color: var(--muted);
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-size: 17px; font-weight: 700; line-height: 1.25;
+  letter-spacing: -0.02em;
+  background: var(--grad);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent;
+  position: relative;
 }
 
 /* hero art */
@@ -409,7 +423,8 @@ ul, dl { margin: 0; padding: 0; list-style: none; }
 
 /* download */
 .os-card {
-  position: relative; padding: 22px; display: flex; flex-direction: column; gap: 6px;
+  position: relative; padding: 24px 20px; display: flex; flex-direction: column;
+  align-items: center; text-align: center; gap: 14px;
   transition: transform .2s, border-color .2s, background .2s;
 }
 .os-card:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent-1) 35%, var(--border)); }
@@ -420,16 +435,19 @@ ul, dl { margin: 0; padding: 0; list-style: none; }
   background: var(--bg-elev-2);
   border: 1px solid var(--border);
   width: 44px; height: 44px; box-sizing: content-box;
-  margin-bottom: 6px;
   background-image: linear-gradient(135deg, rgba(34,211,238,.1), rgba(168,85,247,.1));
 }
-.os-card h3 { font-size: 17px; }
-.os-card p { font-size: 13px; color: var(--muted); font-family: var(--font-mono); }
-.os-card p i { font-style: normal; opacity: .7; }
-.os-go {
-  margin-top: auto; padding-top: 12px;
-  font-size: 13px; font-weight: 600; color: var(--accent-1);
+.os-card h3 { font-size: 17px; font-weight: 700; }
+.os-btn {
+  margin-top: auto;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 9px 20px; border-radius: 10px;
+  background: var(--grad);
+  color: #001018; font-weight: 600; font-size: 14px;
+  box-shadow: 0 6px 18px rgba(99,102,241,.25), 0 1px 0 rgba(255,255,255,.25) inset;
+  transition: transform .15s, box-shadow .2s;
 }
+.os-card:hover .os-btn { box-shadow: 0 10px 26px rgba(99,102,241,.4), 0 1px 0 rgba(255,255,255,.3) inset; }
 .dl-hint { text-align: center; color: var(--muted); font-size: 13.5px; margin-top: 28px; max-width: 64ch; margin-left: auto; margin-right: auto; }
 
 /* privacy */

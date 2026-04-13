@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-Marketing/landing site for the Vora desktop app (github.com/XIU-kr/Vora), served at `vora.xiu.kr`. The Vora app itself lives in a separate repo — this directory only contains the website that introduces it.
+Marketing/landing site for the Vora desktop app (github.com/XIU-kr/Vora), served at `vora.xiu.kr`. This repo (`github.com/XIU-kr/Vora-Website`, **private**) contains the website only; the Vora app source lives in a separate public repo.
 
 ## Stack (deliberately minimal)
 
@@ -12,8 +12,8 @@ Pure static HTML/CSS/JS — **no build step, no package manager, no framework**.
 
 - No `npm`, `node_modules`, `package.json`
 - No React/Vite/Next/Tailwind
-- Only external runtime dep: Pretendard font via jsDelivr CDN
-- JS is vanilla, no modules — single IIFE in `public/assets/app.js`
+- Only external runtime deps: Pretendard font (jsDelivr CDN), Shields.io badge (Download section), GitHub Releases API (runtime fetch)
+- JS is vanilla, no modules — single IIFE in `public/assets/app.js`; privacy page has a smaller inline script
 
 If someone asks to "add a component" or "install a library," default to doing it in plain HTML/CSS/JS. Don't introduce a toolchain without explicit confirmation.
 
@@ -26,29 +26,33 @@ public/                 ← nginx document root
   assets/
     style.css           ← all styles, CSS-variable token system
     app.js              ← i18n toggle, reveal, GitHub release fetch, nav
-    logo.png            ← 128×128 app icon, sourced from Vora repo
+    logo.png            ← 128×128 app icon, mirrored from Vora repo
     og.png              ← OG image (copy of docs/preview.png)
   robots.txt
   sitemap.xml
 ```
 
-No subpages other than `/privacy/`. Any new page should live at `public/<slug>/index.html` so URLs stay trailing-slash.
+New pages go at `public/<slug>/index.html` so URLs stay trailing-slash.
 
 ## Deployment
 
-nginx config lives at `/etc/nginx/conf.d/vora.xiu.kr.conf` (outside this repo, system-owned). After config changes:
+nginx config: `/etc/nginx/conf.d/vora.xiu.kr.conf` (outside the repo, system-owned). After config changes:
 
 ```bash
 sudo nginx -t && sudo systemctl reload nginx
 ```
 
-The nginx config defines three external redirects used across the page — do not replace them with absolute GitHub URLs in HTML:
+The nginx config defines three external redirects — keep using these short paths in HTML rather than hardcoding GitHub URLs where semantically possible:
 
 - `/download` → `https://github.com/XIU-kr/Vora/releases/latest`
 - `/github`   → `https://github.com/XIU-kr/Vora`
 - `/issues`   → `https://github.com/XIU-kr/Vora/issues`
 
-Static assets matching `\.(png|jpg|jpeg|gif|ico|svg|webp|woff2|woff|ttf|css|js)$` get `expires 30d; Cache-Control: public, immutable` — so CSS/JS edits require a cache-busting rename or hard reload to be seen by returning visitors. There is no automatic versioning.
+**Exception**: the download buttons/cards in `index.html` intentionally hardcode the direct asset URL (`.../releases/download/<ver>/Vora_<ver>_*.{exe,dmg,deb,rpm}`) with a `download` attribute so a click starts a real download instead of navigating to the releases page. `app.js` later overwrites these hrefs with whatever the latest GitHub API response reports. When a new Vora version ships, bump the four literal version strings in the HTML — JS will catch up on its own but the initial paint still needs correct URLs.
+
+### Cache busting
+
+nginx serves assets matching `\.(png|jpg|jpeg|gif|ico|svg|webp|woff2|woff|ttf|css|js)$` with `expires 30d; Cache-Control: public, immutable`. CSS/JS edits are invisible to returning visitors without a cache-bust. Pattern: every `<link>` and `<script>` to local `/assets/style.css` or `/assets/app.js` carries a `?v=YYYYMMDD<letter>` query string. When editing those files, bump the query — currently `?v=20260413d`. Update both `public/index.html` and `public/privacy/index.html` together.
 
 ## Architecture patterns to preserve
 
@@ -66,11 +70,13 @@ Text lives in the DOM **twice** — as attributes on the same element:
 
 The privacy page uses a different variant: full KO and EN blocks (`[data-ko-block]` / `[data-en-block]`) toggled via `hidden`, with a small inline script instead of the shared `app.js`.
 
+The hero `<h1>` splits text into three spans with `<br>` between them. KO and EN don't break at the same word boundaries — each `<span>` carries independent `data-ko` / `data-en` values so the line breaks read naturally in both languages. Don't merge the spans.
+
 ### Download button (hero + Download section)
 
-`app.js` fetches `https://api.github.com/repos/XIU-kr/Vora/releases/latest` on load, matches assets by extension (`.dmg` → macOS, `-setup.exe` / `.exe` / `.msi` → Windows, `.deb`, `.rpm`), and rewrites the `href` of every `a[data-os="..."]` to the real asset URL. The four hero dropdown items and the four OS cards in the Download section all share this mechanism via their `data-os` attribute.
+On load `app.js` fetches `https://api.github.com/repos/XIU-kr/Vora/releases/latest` and matches assets by extension (`.dmg` → macOS, `-setup.exe` / `.exe` / `.msi` → Windows, `.deb`, `.rpm`, `.appimage`). It rewrites the `href` of every `a[data-os="..."]` to the real asset URL and toggles the `download` attribute. Any new OS variant added to the UI needs a matching entry in `osUrls`, `labelFor`, and the `matchOS` ext map.
 
-If the API call fails or no asset matches, `href` falls back to the `/download` redirect defined in nginx. UA sniffing picks the default OS shown on the hero button.
+Initial HTML hrefs are already direct asset URLs (see "Exception" above) so the first paint works without JS. `/download` remains the graceful fallback.
 
 ### Reveal animations
 
@@ -84,9 +90,15 @@ Colors and sizes are CSS variables in `:root` at the top of `style.css`. Accent 
 
 Google Analytics 4 (`G-8QDZQ70QN6`) is inlined in both `index.html` and `privacy/index.html` with `anonymize_ip: true`, `allow_google_signals: false`, `allow_ad_personalization_signals: false`. If GA config changes, update both files. Any new page that collects data requires a privacy-policy update — the `/privacy/` page is the source of truth.
 
+Naver Search Advisor ownership is verified via `<meta name="naver-site-verification">` in `index.html`; Google and Bing meta tags are present as commented-out placeholders.
+
+## SEO
+
+Rich structured data is inlined in `index.html` as four JSON-LD blocks: `SoftwareApplication`, `WebSite`, `BreadcrumbList`, and `FAQPage`. When product features change, update `SoftwareApplication.featureList` and the `FAQPage` answers together — they're what shows up in Google rich results. `sitemap.xml` uses the `image:image` namespace to register `og.png` and `logo.png`. `robots.txt` explicitly allows AI crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot) and Korean search bots (Yeti, Daum) in addition to generic `User-agent: *`.
+
 ## Source-of-truth for product copy
 
-Feature lists, shortcuts, format support, version numbers, and download filename patterns are mirrored from the Vora repo's `README.md`. When Vora's README changes, re-fetch it (`gh api repos/XIU-kr/Vora/contents/README.md --jq .content | base64 -d`) rather than editing from memory — the site drifts out of sync otherwise. Hero preview image is `https://raw.githubusercontent.com/XIU-kr/Vora/main/docs/preview.png`.
+Feature lists, shortcuts, format support, version numbers, and download filename patterns mirror the Vora repo's `README.md`. When Vora's README changes, re-fetch it (`gh api repos/XIU-kr/Vora/contents/README.md --jq .content | base64 -d`) rather than editing from memory — the site drifts out of sync otherwise. Hero preview image is `https://raw.githubusercontent.com/XIU-kr/Vora/main/docs/preview.png`; the local `og.png` is a copy for the OG card.
 
 ## HTTPS status
 

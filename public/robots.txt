@@ -1,4 +1,47 @@
+# Allow all crawlers
 User-agent: *
+Allow: /
+Disallow: /privacy/
+
+# AI crawlers — explicitly allow so the page can be summarized in chat assistants
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Yeti
+Allow: /
+
+User-agent: Daum
 Allow: /
 
 Sitemap: https://vora.xiu.kr/sitemap.xml
+Host: https://vora.xiu.kr
