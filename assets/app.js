@@ -105,7 +105,7 @@
     document.querySelectorAll('a[data-os]').forEach(a => {
       const key = a.getAttribute('data-os');
       const url = osUrls[key];
-      if (url) {
+      if (url && url !== FALLBACK_URL) {
         a.href = url;
         a.setAttribute('download', '');
       } else {

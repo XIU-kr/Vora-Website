@@ -47,7 +47,7 @@ The three short paths are handled as **Cloudflare Redirect Rules** (not server-s
 - `/github`   → `https://github.com/XIU-kr/Vora`
 - `/issues`   → `https://github.com/XIU-kr/Vora/issues`
 
-**Exception**: the download buttons/cards in `index.html` intentionally hardcode the direct asset URL (`.../releases/download/<ver>/Vora_<ver>_*.{exe,dmg,deb,rpm}`) with a `download` attribute so a click starts a real download instead of navigating to the releases page. `app.js` later overwrites these hrefs with whatever the latest GitHub API response reports. When a new Vora version ships, bump the four literal version strings in the HTML — JS will catch up on its own but the initial paint still needs correct URLs.
+**No version numbers in HTML.** Initial download hrefs all point to `https://github.com/XIU-kr/Vora/releases/latest` with no `download` attribute — so even before JS runs (or if the GitHub API fetch fails), a click always lands on the current latest release page. `app.js` rewrites the same hrefs to direct asset URLs (`.../releases/download/<latest>/Vora_*.{exe,dmg,deb,rpm}`) and adds `download` once the API response returns, turning clicks into one-shot downloads. Never reintroduce a hardcoded version string in `index.html`.
 
 ### Cache busting
 
@@ -75,7 +75,7 @@ The hero `<h1>` splits text into three spans with `<br>` between them. KO and EN
 
 On load `app.js` fetches `https://api.github.com/repos/XIU-kr/Vora/releases/latest` and matches assets by extension (`.dmg` → macOS, `-setup.exe` / `.exe` / `.msi` → Windows, `.deb`, `.rpm`, `.appimage`). It rewrites the `href` of every `a[data-os="..."]` to the real asset URL and toggles the `download` attribute. Any new OS variant added to the UI needs a matching entry in `osUrls`, `labelFor`, and the `matchOS` ext map.
 
-Initial HTML hrefs are already direct asset URLs (see "Exception" above) so the first paint works without JS. `/download` remains the graceful fallback.
+Initial HTML hrefs are all `https://github.com/XIU-kr/Vora/releases/latest` so the first paint always resolves to the current release even before JS runs. JS then upgrades them to direct asset URLs for one-click downloads.
 
 ### Reveal animations
 
