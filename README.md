@@ -2,21 +2,22 @@
 
 Landing page for [Vora](https://github.com/XIU-kr/Vora), served at **[vora.xiu.kr](https://vora.xiu.kr)**.
 
-Pure static HTML / CSS / vanilla JS — no build step, no framework, no package manager. Served directly by nginx.
+Pure static HTML / CSS / vanilla JS — no build step, no framework, no package manager. Hosted on GitHub Pages behind Cloudflare.
 
 ## Structure
 
 ```
-public/
-  index.html           ← landing page (all sections inline)
-  privacy/index.html   ← /privacy/
-  assets/
-    style.css          ← CSS-variable design tokens, dark theme
-    app.js             ← i18n toggle, scroll reveal, GitHub release fetch
-    logo.png           ← 128×128 app icon
-    og.png             ← social preview
-  robots.txt
-  sitemap.xml
+index.html            ← landing page (all sections inline)
+privacy/index.html    ← /privacy/
+assets/
+  style.css           ← CSS-variable design tokens, dark theme
+  app.js              ← i18n toggle, scroll reveal, GitHub release fetch
+  logo.png            ← 128×128 app icon
+  og.png              ← social preview
+robots.txt
+sitemap.xml
+CNAME                 ← vora.xiu.kr
+.nojekyll             ← disable Jekyll on Pages
 ```
 
 ## Features
@@ -31,20 +32,16 @@ public/
 ## Local preview
 
 ```bash
-cd public && python3 -m http.server 8000
+python3 -m http.server 8000
 ```
 
 ## Deployment
 
-nginx config at `/etc/nginx/conf.d/vora.xiu.kr.conf` with document root `public/`.
-
-```bash
-sudo nginx -t && sudo systemctl reload nginx
-```
+Push to `main` — GitHub Pages publishes the repo root. `CNAME` binds the custom domain `vora.xiu.kr`; DNS is a proxied CNAME to `xiu-kr.github.io` on Cloudflare. The three short paths `/download`, `/github`, `/issues` are 301s handled by Cloudflare Redirect Rules (no server-side config).
 
 ### Cache busting
 
-CSS/JS are served with `Cache-Control: public, immutable`. When editing `assets/style.css` or `assets/app.js`, bump the `?v=...` query in both `public/index.html` and `public/privacy/index.html`.
+CSS/JS edits are invisible to returning visitors due to Cloudflare edge caching. Bump the `?v=...` query on every `<link>`/`<script>` to `assets/style.css` or `assets/app.js` in both `index.html` and `privacy/index.html` together.
 
 ## License
 

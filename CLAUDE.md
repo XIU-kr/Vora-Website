@@ -4,45 +4,44 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-Marketing/landing site for the Vora desktop app (github.com/XIU-kr/Vora), served at `vora.xiu.kr`. This repo (`github.com/XIU-kr/Vora-Website`, **private**) contains the website only; the Vora app source lives in a separate public repo.
+Marketing/landing site for the Vora desktop app (github.com/XIU-kr/Vora), served at `vora.xiu.kr`. This repo (`github.com/XIU-kr/Vora-Website`, public) contains the website only; the Vora app source lives in a separate public repo.
 
 ## Stack (deliberately minimal)
 
-Pure static HTML/CSS/JS — **no build step, no package manager, no framework**. Files are served directly by nginx. Edit a file and the change is live on next request; there is nothing to compile.
+Pure static HTML/CSS/JS — **no build step, no package manager, no framework**. Files are published by GitHub Pages directly from `main`. Edit a file, push, and Pages republishes within seconds; there is nothing to compile.
 
 - No `npm`, `node_modules`, `package.json`
 - No React/Vite/Next/Tailwind
 - Only external runtime deps: Pretendard font (jsDelivr CDN), Shields.io badge (Download section), GitHub Releases API (runtime fetch)
-- JS is vanilla, no modules — single IIFE in `public/assets/app.js`; privacy page has a smaller inline script
+- JS is vanilla, no modules — single IIFE in `assets/app.js`; privacy page has a smaller inline script
 
 If someone asks to "add a component" or "install a library," default to doing it in plain HTML/CSS/JS. Don't introduce a toolchain without explicit confirmation.
 
 ## Layout
 
 ```
-public/                 ← nginx document root
-  index.html            ← single landing page (all sections inline)
-  privacy/index.html    ← privacy policy (served at /privacy/)
-  assets/
-    style.css           ← all styles, CSS-variable token system
-    app.js              ← i18n toggle, reveal, GitHub release fetch, nav
-    logo.png            ← 128×128 app icon, mirrored from Vora repo
-    og.png              ← OG image (copy of docs/preview.png)
-  robots.txt
-  sitemap.xml
+index.html            ← single landing page (all sections inline)
+privacy/index.html    ← privacy policy (served at /privacy/)
+assets/
+  style.css           ← all styles, CSS-variable token system
+  app.js              ← i18n toggle, reveal, GitHub release fetch, nav
+  logo.png            ← 128×128 app icon, mirrored from Vora repo
+  og.png              ← OG image (copy of docs/preview.png)
+robots.txt
+sitemap.xml
+CNAME                 ← binds custom domain `vora.xiu.kr` on Pages
+.nojekyll             ← disables Jekyll processing on Pages
 ```
 
-New pages go at `public/<slug>/index.html` so URLs stay trailing-slash.
+New pages go at `<slug>/index.html` (at repo root) so URLs stay trailing-slash.
 
 ## Deployment
 
-nginx config: `/etc/nginx/conf.d/vora.xiu.kr.conf` (outside the repo, system-owned). After config changes:
+Hosted on **GitHub Pages** from `main` branch / `/` (root). Pushing to `main` triggers a Pages build automatically; no CI workflow is needed for plain static files. The `CNAME` file binds the custom domain `vora.xiu.kr`.
 
-```bash
-sudo nginx -t && sudo systemctl reload nginx
-```
+DNS is a **proxied CNAME** on Cloudflare: `vora` → `xiu-kr.github.io`. Cloudflare SSL mode must be **Full** (not Flexible) to avoid redirect loops with Pages' HTTPS.
 
-The nginx config defines three external redirects — keep using these short paths in HTML rather than hardcoding GitHub URLs where semantically possible:
+The three short paths are handled as **Cloudflare Redirect Rules** (not server-side) — keep using them in HTML rather than hardcoding GitHub URLs where semantically possible:
 
 - `/download` → `https://github.com/XIU-kr/Vora/releases/latest`
 - `/github`   → `https://github.com/XIU-kr/Vora`
@@ -52,7 +51,7 @@ The nginx config defines three external redirects — keep using these short pat
 
 ### Cache busting
 
-nginx serves assets matching `\.(png|jpg|jpeg|gif|ico|svg|webp|woff2|woff|ttf|css|js)$` with `expires 30d; Cache-Control: public, immutable`. CSS/JS edits are invisible to returning visitors without a cache-bust. Pattern: every `<link>` and `<script>` to local `/assets/style.css` or `/assets/app.js` carries a `?v=YYYYMMDD<letter>` query string. When editing those files, bump the query — currently `?v=20260413d`. Update both `public/index.html` and `public/privacy/index.html` together.
+Pages sets `Cache-Control: max-age=600` on HTML and immutable caches on fingerprinted-looking assets; Cloudflare edge layers an additional cache. CSS/JS edits are invisible to returning visitors without a cache-bust. Pattern: every `<link>` and `<script>` to local `/assets/style.css` or `/assets/app.js` carries a `?v=YYYYMMDD<letter>` query string. When editing those files, bump the query — currently `?v=20260413d`. Update both `index.html` and `privacy/index.html` together.
 
 ## Architecture patterns to preserve
 
@@ -100,6 +99,6 @@ Rich structured data is inlined in `index.html` as four JSON-LD blocks: `Softwar
 
 Feature lists, shortcuts, format support, version numbers, and download filename patterns mirror the Vora repo's `README.md`. When Vora's README changes, re-fetch it (`gh api repos/XIU-kr/Vora/contents/README.md --jq .content | base64 -d`) rather than editing from memory — the site drifts out of sync otherwise. Hero preview image is `https://raw.githubusercontent.com/XIU-kr/Vora/main/docs/preview.png`; the local `og.png` is a copy for the OG card.
 
-## HTTPS status
+## HTTPS
 
-Currently HTTP-only on port 80 per deliberate choice. Adding TLS is out-of-scope unless requested — the nginx config and `server_name vora.xiu.kr` are already set up for a later `certbot --nginx -d vora.xiu.kr` if needed.
+Handled automatically — GitHub Pages issues the origin certificate for `vora.xiu.kr`, and Cloudflare terminates TLS at the edge (SSL mode: **Full**). "Enforce HTTPS" should be enabled on the Pages settings so HTTP hits 301 to HTTPS. Nothing to manage on a server.
