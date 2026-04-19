@@ -48,18 +48,13 @@
   applyLang(detectLang());
 
   // ---------- downloads ----------
-  // Match asset name to OS key.
   const matchOS = (name) => {
     const n = name.toLowerCase();
     if (n.endsWith('.dmg')) return 'macos';
     if (n.endsWith('-setup.exe') || n.endsWith('.msi') || n.endsWith('.exe')) return 'windows';
     return null;
   };
-
-  const labelFor = (key) => ({
-    windows: 'Windows',
-    macos:   'macOS'
-  }[key] || 'Download');
+  const labelFor = (key) => ({ windows: 'Windows', macos: 'macOS' }[key] || 'Download');
 
   const detectOS = () => {
     const saved = localStorage.getItem(LS_OS);
@@ -75,13 +70,7 @@
   const dlToggle = document.getElementById('dl-toggle');
   const dlMenu = document.getElementById('dl-menu');
 
-  // State: os key → asset url. Seeded from current HTML hrefs so the first
-  // paint already has direct download links; overwritten by the GitHub API
-  // fetch below when a newer release lands.
-  const osUrls = {
-    windows: FALLBACK_URL,
-    macos: FALLBACK_URL
-  };
+  const osUrls = { windows: FALLBACK_URL, macos: FALLBACK_URL };
   document.querySelectorAll('a[data-os]').forEach(a => {
     const key = a.getAttribute('data-os');
     const h = a.getAttribute('href');
@@ -124,20 +113,22 @@
   renderMenu();
   applyOS(currentOS);
 
-  // Fetch actual release assets
+  // Fetch actual release assets + version label
   fetch('https://api.github.com/repos/' + REPO + '/releases/latest', {
     headers: { 'Accept': 'application/vnd.github+json' }
   }).then(r => r.ok ? r.json() : null).then(data => {
-    if (!data || !Array.isArray(data.assets)) return;
-    data.assets.forEach(asset => {
-      const key = matchOS(asset.name || '');
-      if (key && osUrls[key] !== undefined) {
-        osUrls[key] = asset.browser_download_url;
-      }
-    });
-    renderMenu();
-    applyOS(currentOS);
-  }).catch(() => { /* keep fallback */ });
+    if (!data) return;
+    if (Array.isArray(data.assets)) {
+      data.assets.forEach(asset => {
+        const key = matchOS(asset.name || '');
+        if (key && osUrls[key] !== undefined) osUrls[key] = asset.browser_download_url;
+      });
+      renderMenu();
+      applyOS(currentOS);
+    }
+    const vl = document.getElementById('version-label');
+    if (vl && data.tag_name) vl.textContent = 'v' + String(data.tag_name).replace(/^v/, '') + ' · GitHub Releases';
+  }).catch(() => {});
 
   // menu toggle
   if (dlToggle && dlMenu) {
@@ -151,7 +142,6 @@
       if (!dlMenu.hidden && !dlMenu.contains(e.target) && e.target !== dlToggle) closeMenu();
     });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
-
     dlMenu.querySelectorAll('a[data-os]').forEach(a => {
       a.addEventListener('click', () => {
         applyOS(a.getAttribute('data-os'));
@@ -182,5 +172,58 @@
     const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  // ---------- before/after slider ----------
+  const ba = document.getElementById('ba');
+  const baHandle = document.getElementById('ba-handle');
+  if (ba && baHandle) {
+    let dragging = false;
+    const setPct = (clientX) => {
+      const rect = ba.getBoundingClientRect();
+      const pct = Math.max(4, Math.min(96, ((clientX - rect.left) / rect.width) * 100));
+      ba.style.setProperty('--sp', pct + '%');
+    };
+    const onMove = (e) => {
+      if (!dragging) return;
+      const x = e.touches ? e.touches[0].clientX : e.clientX;
+      setPct(x);
+      e.preventDefault();
+    };
+    const onUp = () => { dragging = false; document.body.style.userSelect = ''; };
+    baHandle.addEventListener('mousedown', (e) => { dragging = true; document.body.style.userSelect = 'none'; onMove(e); });
+    baHandle.addEventListener('touchstart', (e) => { dragging = true; onMove(e); }, { passive: true });
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('touchmove', onMove, { passive: false });
+    document.addEventListener('mouseup', onUp);
+    document.addEventListener('touchend', onUp);
+
+    // auto sweep until user interacts
+    let userInteracted = false;
+    const stop = () => { userInteracted = true; };
+    baHandle.addEventListener('mousedown', stop);
+    baHandle.addEventListener('touchstart', stop);
+    ba.addEventListener('mouseenter', stop);
+    let t = 0;
+    const tick = () => {
+      if (userInteracted) return;
+      t += 0.012;
+      const p = 50 + Math.sin(t) * 32;
+      ba.style.setProperty('--sp', p + '%');
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  // ---------- toolkit tabs ----------
+  const tkRail = document.querySelector('.tk-rail');
+  if (tkRail) {
+    tkRail.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-tk]');
+      if (!btn) return;
+      const key = btn.getAttribute('data-tk');
+      tkRail.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
+      document.querySelectorAll('.tk-panel').forEach(p => p.classList.toggle('active', p.getAttribute('data-panel') === key));
+    });
   }
 })();

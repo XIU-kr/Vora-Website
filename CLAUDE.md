@@ -51,7 +51,7 @@ The three short paths are handled as **Cloudflare Redirect Rules** (not server-s
 
 ### Cache busting
 
-Pages sets `Cache-Control: max-age=600` on HTML and immutable caches on fingerprinted-looking assets; Cloudflare edge layers an additional cache. CSS/JS edits are invisible to returning visitors without a cache-bust. Pattern: every `<link>` and `<script>` to local `/assets/style.css` or `/assets/app.js` carries a `?v=YYYYMMDD<letter>` query string. When editing those files, bump the query — currently `?v=20260419a`. Update both `index.html` and `privacy/index.html` together.
+Pages sets `Cache-Control: max-age=600` on HTML and immutable caches on fingerprinted-looking assets; Cloudflare edge layers an additional cache. CSS/JS edits are invisible to returning visitors without a cache-bust. Pattern: every `<link>` and `<script>` to local `/assets/style.css` or `/assets/app.js` carries a `?v=YYYYMMDD<letter>` query string. When editing those files, bump the query — currently `?v=20260419b`. Update both `index.html` and `privacy/index.html` together.
 
 ## Architecture patterns to preserve
 
