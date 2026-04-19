@@ -53,29 +53,20 @@
     const n = name.toLowerCase();
     if (n.endsWith('.dmg')) return 'macos';
     if (n.endsWith('-setup.exe') || n.endsWith('.msi') || n.endsWith('.exe')) return 'windows';
-    if (n.endsWith('.deb')) return 'linux-deb';
-    if (n.endsWith('.rpm')) return 'linux-rpm';
-    if (n.endsWith('.appimage')) return 'linux-appimage';
     return null;
   };
 
   const labelFor = (key) => ({
-    windows:   'Windows',
-    macos:     'macOS',
-    'linux-deb': 'Linux (deb)',
-    'linux-rpm': 'Linux (rpm)',
-    'linux-appimage': 'Linux (AppImage)'
+    windows: 'Windows',
+    macos:   'macOS'
   }[key] || 'Download');
 
   const detectOS = () => {
     const saved = localStorage.getItem(LS_OS);
-    if (saved) return saved;
+    if (saved === 'windows' || saved === 'macos') return saved;
     const ua = (navigator.userAgent || '').toLowerCase();
     const plat = ((navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '').toLowerCase();
     if (plat.includes('mac') || ua.includes('mac os')) return 'macos';
-    if (plat.includes('win') || ua.includes('windows')) return 'windows';
-    if (ua.includes('fedora') || ua.includes('rhel') || ua.includes('red hat') || ua.includes('centos')) return 'linux-rpm';
-    if (plat.includes('linux') || ua.includes('linux')) return 'linux-deb';
     return 'windows';
   };
 
@@ -89,9 +80,7 @@
   // fetch below when a newer release lands.
   const osUrls = {
     windows: FALLBACK_URL,
-    macos: FALLBACK_URL,
-    'linux-deb': FALLBACK_URL,
-    'linux-rpm': FALLBACK_URL
+    macos: FALLBACK_URL
   };
   document.querySelectorAll('a[data-os]').forEach(a => {
     const key = a.getAttribute('data-os');
@@ -144,9 +133,6 @@
       const key = matchOS(asset.name || '');
       if (key && osUrls[key] !== undefined) {
         osUrls[key] = asset.browser_download_url;
-      } else if (key === 'linux-appimage' && osUrls['linux-deb'] === FALLBACK_URL) {
-        // fall back deb slot to AppImage if no deb exists
-        osUrls['linux-deb'] = asset.browser_download_url;
       }
     });
     renderMenu();
