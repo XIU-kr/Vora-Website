@@ -74,7 +74,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" />
-<link rel="stylesheet" href="/assets/style.css?v=20260419b" />
+<link rel="stylesheet" href="/assets/style.css?v=20260421a" />
 
 <script type="application/ld+json">
 {
@@ -98,18 +98,21 @@
   "inLanguage": ["ko", "en"],
   "keywords": "AI image editor, Photoshop alternative, inpainting, Big-LaMa, layers, open source",
   "featureList": [
-    "AI Restore / AI Eraser (Big-LaMa inpainting, runs locally)",
-    "Non-destructive adjustment layers (Curves, Levels, Hue/Saturation, Color Balance)",
+    "AI Restore (Big-LaMa inpainting, runs locally and offline)",
+    "15 non-destructive adjustment layers — Curves, Levels, Hue/Saturation, Color Balance, Exposure, Vibrance, Shadows/Highlights, Black & White, Photo Filter, Channel Mixer, Posterize, Threshold, Gradient Map, and more",
     "12 one-click filter presets (Vivid, B&W, Film, Vintage, Cinematic, and more)",
-    "Layer system with 12 blend modes, 5 layer effects, Align & Distribute",
-    "Magic Wand, Lasso, and Marquee selection tools",
-    "Clone Stamp, Healing Brush, History Brush",
+    "Filters menu — Gaussian / Motion / Radial Blur, Unsharp Mask, Pixelate, High Pass, Median, Find Edges, Pinch, Spherize, Twirl, Emboss, Solarize, Clouds, Lens Flare",
+    "Layer system with 16 blend modes, 5 layer effects, Smart Objects, Clipping Masks, 3-axis Lock, Align & Distribute",
+    "Selection — Magic Wand, Rectangle / Ellipse / Lasso / Polygon Lasso / Magnetic Lasso marquees, Color Range",
+    "Stamp-based brush engine with 19 procedural tips across 4 categories",
+    "Eraser, Magic Eraser, Smudge, Sharpen, Blur, Paint Bucket, Bezier Pen, Liquify, Clone Stamp, Healing Brush, History Brush",
+    "Free Transform with Distort and Perspective modes, Puppet Warp, Measure Tool",
     "Smart Guides — drag-snap to canvas and layer edges",
     "Swatches panel with Material / Tailwind / iOS preset palettes",
     "New Page presets (Social / Video / Print / Standard)",
-    "Multi-page projects (.vora, gzip-compressed)",
-    "Export to PNG, JPG, WebP, PDF, PPTX (editable text)",
-    "Photoshop-aligned keyboard shortcuts"
+    "Multi-page projects (.vora, gzip-compressed) with multi-project tabs and Open Recent",
+    "Export to PNG, JPG, WebP, PDF (multi-page), PPTX (editable text), SVG",
+    "Photoshop-aligned keyboard shortcuts (50+ mappings)"
   ],
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "availability": "https://schema.org/InStock" },
   "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "ratingCount": "1", "bestRating": "5" },
@@ -151,10 +154,10 @@
     { "@type": "Question", "name": "Is Vora free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Vora is MIT-licensed open source software, free to download and use on Windows and macOS — no subscription, no account." } },
     { "@type": "Question", "name": "AI 기능은 어떻게 동작하나요?", "acceptedAnswer": { "@type": "Answer", "text": "Big-LaMa 인페인팅(AI 복원 / AI 지우개)이 내장되어 있으며, 모델은 처음 사용할 때 한 번만 내려받아 이후에는 기기에서 오프라인으로 실행됩니다." } },
     { "@type": "Question", "name": "How does the AI work?", "acceptedAnswer": { "@type": "Answer", "text": "Vora bundles Big-LaMa inpainting for object removal. The ~200MB model is downloaded once on first use, then runs locally and offline." } },
-    { "@type": "Question", "name": "Photoshop의 대안으로 쓸 수 있나요?", "acceptedAnswer": { "@type": "Answer", "text": "레이어, 마스크, 조정 레이어, 12가지 블렌드 모드, 클론 스탬프·힐링 브러시를 갖추고 있으며 단축키가 Photoshop과 동일해 워크플로우를 그대로 옮길 수 있습니다." } },
-    { "@type": "Question", "name": "Can Vora replace Photoshop?", "acceptedAnswer": { "@type": "Answer", "text": "Vora ships layers, masks, non-destructive adjustment layers, 12 blend modes, Clone Stamp and Healing Brush — and keyboard shortcuts aligned 1:1 with Photoshop." } },
-    { "@type": "Question", "name": "어떤 파일 형식으로 내보낼 수 있나요?", "acceptedAnswer": { "@type": "Answer", "text": "PNG, JPG, WebP, 멀티 페이지 PDF, 그리고 텍스트가 그대로 편집되는 PPTX를 지원합니다. 프로젝트는 .vora 파일로 저장됩니다." } },
-    { "@type": "Question", "name": "What formats can Vora export?", "acceptedAnswer": { "@type": "Answer", "text": "PNG, JPG, WebP, multi-page PDF, and PPTX with editable text layers. Projects save as .vora files containing all pages and layers." } }
+    { "@type": "Question", "name": "Photoshop의 대안으로 쓸 수 있나요?", "acceptedAnswer": { "@type": "Answer", "text": "레이어, 마스크, 클리핑 마스크, 스마트 오브젝트, 15가지 조정 레이어, 16가지 블렌드 모드, 클론 스탬프·힐링 브러시·히스토리 브러시·매직 지우개·스머지·샤픈·리퀴파이를 갖추고 있으며, 단축키 50여 개가 Photoshop과 1:1로 동일해 워크플로우를 그대로 옮길 수 있습니다." } },
+    { "@type": "Question", "name": "Can Vora replace Photoshop?", "acceptedAnswer": { "@type": "Answer", "text": "Vora ships layers, masks, clipping masks, smart objects, 15 non-destructive adjustment layers, 16 blend modes, Clone Stamp, Healing Brush, History Brush, Magic Eraser, Smudge, Sharpen, and Liquify — with 50+ shortcuts aligned 1:1 to Photoshop." } },
+    { "@type": "Question", "name": "어떤 파일 형식으로 내보낼 수 있나요?", "acceptedAnswer": { "@type": "Answer", "text": "PNG, JPG, WebP, 멀티 페이지 PDF, 텍스트가 그대로 편집되는 PPTX, 그리고 SVG를 지원합니다. 프로젝트는 .vora 파일로 저장되며 0.1.6부터 gzip 압축으로 디스크 사용량이 60–70% 줄어들었습니다." } },
+    { "@type": "Question", "name": "What formats can Vora export?", "acceptedAnswer": { "@type": "Answer", "text": "PNG, JPG, WebP, multi-page PDF, PPTX with editable text layers, and SVG. Projects save as .vora files (gzip-compressed since 0.1.6, 60–70% smaller on disk) holding every page and layer in one document." } }
   ]
 }
 </script>
@@ -304,19 +307,25 @@
 <!-- MARQUEE -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <span>AI Restore</span><span>Big-LaMa Inpainting</span><span>Layer Masks</span>
-    <span>Adjustment Layers</span><span>Curves</span><span>Levels</span>
-    <span>Hue / Saturation</span><span>12 Blend Modes</span><span>5 Layer Effects</span>
-    <span>Smart Guides</span><span>Clone Stamp</span><span>Healing Brush</span>
-    <span>Command Palette</span><span>PPTX Editable Text</span><span>Magic Wand</span>
-    <span>Quick Mask</span><span>Free Transform</span><span>Filter Presets</span>
+    <span>AI Restore</span><span>Big-LaMa Inpainting</span><span>Magnetic Lasso</span>
+    <span>Polygon Lasso</span><span>Magic Wand</span><span>Color Range</span>
+    <span>19 Brush Tips</span><span>Magic Eraser</span><span>Smudge</span>
+    <span>Liquify</span><span>Puppet Warp</span><span>16 Blend Modes</span>
+    <span>Layer Masks</span><span>Clipping Mask</span><span>Smart Objects</span>
+    <span>15 Adjustment Layers</span><span>Curves</span><span>Shadows / Highlights</span>
+    <span>Filter Presets</span><span>Smart Guides</span><span>Pattern Fill</span>
+    <span>Measure Tool</span><span>Free Transform · Distort</span><span>Command Palette</span>
+    <span>PPTX Editable Text</span><span>SVG Export</span><span>.vora gzip</span>
     <!-- duplicate for seamless loop -->
-    <span>AI Restore</span><span>Big-LaMa Inpainting</span><span>Layer Masks</span>
-    <span>Adjustment Layers</span><span>Curves</span><span>Levels</span>
-    <span>Hue / Saturation</span><span>12 Blend Modes</span><span>5 Layer Effects</span>
-    <span>Smart Guides</span><span>Clone Stamp</span><span>Healing Brush</span>
-    <span>Command Palette</span><span>PPTX Editable Text</span><span>Magic Wand</span>
-    <span>Quick Mask</span><span>Free Transform</span><span>Filter Presets</span>
+    <span>AI Restore</span><span>Big-LaMa Inpainting</span><span>Magnetic Lasso</span>
+    <span>Polygon Lasso</span><span>Magic Wand</span><span>Color Range</span>
+    <span>19 Brush Tips</span><span>Magic Eraser</span><span>Smudge</span>
+    <span>Liquify</span><span>Puppet Warp</span><span>16 Blend Modes</span>
+    <span>Layer Masks</span><span>Clipping Mask</span><span>Smart Objects</span>
+    <span>15 Adjustment Layers</span><span>Curves</span><span>Shadows / Highlights</span>
+    <span>Filter Presets</span><span>Smart Guides</span><span>Pattern Fill</span>
+    <span>Measure Tool</span><span>Free Transform · Distort</span><span>Command Palette</span>
+    <span>PPTX Editable Text</span><span>SVG Export</span><span>.vora gzip</span>
   </div>
 </div>
 
@@ -346,7 +355,7 @@
       <article class="pillar" data-reveal>
         <span class="pillar-num">02 / Layers</span>
         <h3 data-ko="논파괴 편집" data-en="Non-destructive">논파괴 편집</h3>
-        <p data-ko="12가지 블렌드 모드, 5가지 레이어 효과, 곡선·레벨·색상 균형 조정 레이어. 원본은 절대 건드리지 않습니다." data-en="12 blend modes, 5 layer effects, Curves / Levels / Color Balance adjustment layers. Your source never gets touched.">12가지 블렌드 모드, 5가지 레이어 효과, 곡선·레벨·색상 균형 조정 레이어. 원본은 절대 건드리지 않습니다.</p>
+        <p data-ko="16가지 블렌드 모드, 5가지 레이어 효과, 15종 조정 레이어, 클리핑 마스크와 스마트 오브젝트까지. 원본은 절대 건드리지 않습니다." data-en="16 blend modes, 5 layer effects, 15 adjustment layer types, clipping masks and smart objects. Your source never gets touched.">16가지 블렌드 모드, 5가지 레이어 효과, 15종 조정 레이어, 클리핑 마스크와 스마트 오브젝트까지. 원본은 절대 건드리지 않습니다.</p>
         <div class="pillar-demo">
           <div class="demo-layers">
             <div class="row">
@@ -432,66 +441,67 @@
       <div class="tk-panels">
         <div class="tk-panel active" data-panel="selection">
           <h3 data-ko="프로급 선택 도구" data-en="Pro-grade selection">프로급 선택 도구</h3>
-          <p data-ko="매직 완드·라소·사각·원형 마퀴, 그리고 선택 영역을 바로 지우거나 채우거나 배경으로 교체하는 액션까지." data-en="Magic Wand, Lasso, Rectangle & Ellipse marquees — plus one-click actions to erase, fill, or replace the selection.">매직 완드·라소·사각·원형 마퀴, 그리고 선택 영역을 바로 지우거나 채우거나 배경으로 교체하는 액션까지.</p>
+          <p data-ko="3가지 라소 모드(L 키로 순환), 매직 완드, 컬러 레인지, 그리고 선택 영역을 바로 지우거나 채우거나 배경으로 교체하는 액션까지." data-en="Three lasso modes (cycle with L), Magic Wand, Color Range — plus one-click actions to erase, fill, or replace the selection.">3가지 라소 모드(L 키로 순환), 매직 완드, 컬러 레인지, 그리고 선택 영역을 바로 지우거나 채우거나 배경으로 교체하는 액션까지.</p>
           <ul class="tk-list">
-            <li data-ko="매직 완드 · 사각 · 원형 · 올가미 마퀴" data-en="Magic Wand · Rectangle · Ellipse · Lasso">매직 완드 · 사각 · 원형 · 올가미 마퀴</li>
-            <li data-ko="반전 / 확장 / 축소 / 페더 / 재선택" data-en="Invert / Expand / Contract / Feather / Reselect">반전 / 확장 / 축소 / 페더 / 재선택</li>
-            <li data-ko="전체 선택 (Ctrl+A) · 해제 (Ctrl+D)" data-en="Select All (Ctrl+A) · Deselect (Ctrl+D)">전체 선택 (Ctrl+A) · 해제 (Ctrl+D)</li>
-            <li data-ko="선택 영역에 지우기·채우기·복원" data-en="Erase · Fill · Restore inside selection">선택 영역에 지우기·채우기·복원</li>
-            <li data-ko="배경 투명화 · 배경 교체" data-en="Transparent background · Replace background">배경 투명화 · 배경 교체</li>
-            <li data-ko="선택 영역에 붙여넣기 (Ctrl+Shift+V)" data-en="Paste Into selection (Ctrl+Shift+V)">선택 영역에 붙여넣기</li>
+            <li data-ko="사각 · 원형 마퀴 · 매직 완드" data-en="Rectangle · Ellipse marquee · Magic Wand">사각 · 원형 마퀴 · 매직 완드</li>
+            <li data-ko="올가미 · 폴리곤 라소 · 자석 라소" data-en="Lasso · Polygon Lasso · Magnetic Lasso">올가미 · 폴리곤 라소 · 자석 라소</li>
+            <li data-ko="컬러 레인지 — 색상 허용치 기반 선택" data-en="Color Range — tolerance-based color selection">컬러 레인지</li>
+            <li data-ko="수정 — 반전·확장·축소·페더·테두리·스무드·확대·유사" data-en="Modify — Invert / Expand / Contract / Feather / Border / Smooth / Grow / Similar">수정 — 반전·확장·축소·페더·테두리·유사</li>
+            <li data-ko="전체 선택 (Ctrl+A) · 해제 (Ctrl+D) · 재선택 (Ctrl+⇧+D)" data-en="Select All · Deselect · Reselect">전체 선택 · 해제 · 재선택</li>
+            <li data-ko="선택 영역에 지우기·채우기·복원·배경 교체" data-en="Erase / Fill / Restore / Replace background inside selection">지우기 · 채우기 · 복원 · 배경 교체</li>
           </ul>
         </div>
 
         <div class="tk-panel" data-panel="paint">
           <h3 data-ko="드로잉 &amp; 페인팅" data-en="Drawing &amp; painting">드로잉 &amp; 페인팅</h3>
-          <p data-ko="펜, 도형, 클론 스탬프, 힐링 브러시, 히스토리 브러시 — 그리고 프리셋 팔레트까지 원클릭." data-en="Pen, shapes, Clone Stamp, Healing Brush, History Brush — plus one-click preset palettes.">펜, 도형, 클론 스탬프, 힐링 브러시, 히스토리 브러시 — 그리고 프리셋 팔레트까지 원클릭.</p>
+          <p data-ko="19종 절차적 브러시 팁, 27개 도구를 8개 그룹으로 모은 플라이아웃 툴바, 그리고 매직 지우개·스머지·샤픈·리퀴파이까지." data-en="19 procedural brush tips, 27 tools collapsed into 8 flyout groups, plus Magic Eraser, Smudge, Sharpen and Liquify.">19종 절차적 브러시 팁, 27개 도구를 8개 그룹으로 모은 플라이아웃 툴바, 그리고 매직 지우개·스머지·샤픈·리퀴파이까지.</p>
           <ul class="tk-list">
-            <li data-ko="펜 · 프리핸드 드로잉" data-en="Pen · freehand drawing">펜 · 프리핸드 드로잉</li>
-            <li data-ko="도형 — 사각 / 원형 / 선 / 화살 / 베지어" data-en="Shapes — Rect / Ellipse / Line / Arrow / Bezier">도형 — 사각 / 원형 / 선 / 화살 / 베지어</li>
-            <li data-ko="클론 스탬프 · 힐링 브러시 · 히스토리 브러시" data-en="Clone Stamp · Healing Brush · History Brush">클론 스탬프 · 힐링 브러시 · 히스토리 브러시</li>
-            <li data-ko="그라디언트 레이어 생성" data-en="Gradient layer creation">그라디언트 레이어 생성</li>
-            <li data-ko="스와치 — Material · Tailwind · iOS 프리셋" data-en="Swatches — Material · Tailwind · iOS">스와치 — Material · Tailwind · iOS 프리셋</li>
-            <li data-ko="[ / ] 브러시 크기 · D / X 색상 제어" data-en="[ / ] brush size · D/X color controls">[ / ] 브러시 크기 · D / X 색상 제어</li>
+            <li data-ko="스탬프 브러시 엔진 — 19개 팁 · 4개 카테고리" data-en="Stamp brush engine — 19 tips · 4 categories">스탬프 브러시 엔진 — 19개 팁 · 4개 카테고리</li>
+            <li data-ko="지우개 · 매직 지우개 (⇧+E) · 페인트 버킷 (K)" data-en="Eraser · Magic Eraser (Shift+E) · Paint Bucket (K)">지우개 · 매직 지우개 · 페인트 버킷</li>
+            <li data-ko="스머지 (⇧+R) · 샤픈 (Alt+R) · 블러 · 리퀴파이" data-en="Smudge (Shift+R) · Sharpen (Alt+R) · Blur · Liquify">스머지 · 샤픈 · 블러 · 리퀴파이</li>
+            <li data-ko="베지어 펜 · 도형 — 사각 / 원형 / 선 / 화살" data-en="Bezier Pen · Shapes — Rect / Ellipse / Line / Arrow">베지어 펜 · 도형</li>
+            <li data-ko="클론 스탬프 · 힐링 브러시 · 히스토리 브러시 · 그라디언트" data-en="Clone Stamp · Healing · History Brush · Gradient">클론 스탬프 · 힐링 · 히스토리 · 그라디언트</li>
+            <li data-ko="스와치 — Material · Tailwind · iOS 프리셋" data-en="Swatches — Material · Tailwind · iOS">스와치 프리셋</li>
           </ul>
         </div>
 
         <div class="tk-panel" data-panel="image">
-          <h3 data-ko="이미지 조작" data-en="Image operations">이미지 조작</h3>
-          <p data-ko="이미지·캔버스 크기 변경, 트림, 회전·반전, 자동 향상 — 처음부터 시작할 때 필요한 프리셋까지." data-en="Image & Canvas size, Trim, rotate / flip, Auto Enhance — plus presets for starting from zero.">이미지·캔버스 크기 변경, 트림, 회전·반전, 자동 향상 — 처음부터 시작할 때 필요한 프리셋까지.</p>
+          <h3 data-ko="이미지 &amp; 필터" data-en="Image &amp; filters">이미지 &amp; 필터</h3>
+          <p data-ko="이미지·캔버스 크기, 자동 트림, 퍼펫 워프, 자동 향상 — 그리고 블러부터 렌즈 플레어까지 풀세트 필터." data-en="Image & Canvas size, auto-trim, Puppet Warp, Auto Enhance — and a full filter set from blurs to lens flare.">이미지·캔버스 크기, 자동 트림, 퍼펫 워프, 자동 향상 — 그리고 블러부터 렌즈 플레어까지 풀세트 필터.</p>
           <ul class="tk-list">
-            <li data-ko="이미지 크기 · 캔버스 크기 (9-앵커)" data-en="Image Size · Canvas Size (9-anchor)">이미지 크기 · 캔버스 크기 (9-앵커)</li>
-            <li data-ko="자동 트림 — 투명 가장자리 자르기" data-en="Trim — auto-crop transparent edges">자동 트림</li>
-            <li data-ko="새 페이지 프리셋 — SNS · 영상 · 인쇄 · 표준" data-en="New Page presets — Social / Video / Print / Standard">새 페이지 프리셋 — SNS · 영상 · 인쇄 · 표준</li>
-            <li data-ko="90° / 180° / 270° 회전, 좌우·상하 반전" data-en="Rotate 90°/180°/270°, flip H/V">회전 · 반전</li>
-            <li data-ko="자동 향상 · 자동 레벨 · 샤픈" data-en="Auto Enhance · Auto Levels · Sharpen">자동 향상 · 자동 레벨 · 샤픈</li>
-            <li data-ko="노이즈 추가 · 색상 교체" data-en="Add Noise · Color Replace">노이즈 추가 · 색상 교체</li>
+            <li data-ko="이미지 크기 (Ctrl+Alt+I) — Nearest / Bilinear / Bicubic" data-en="Image Size (Ctrl+Alt+I) — Nearest / Bilinear / Bicubic">이미지 크기 — 리샘플링 알고리즘 선택</li>
+            <li data-ko="캔버스 크기 (9-앵커) · 트림 · 회전 · 반전" data-en="Canvas Size (9-anchor) · Trim · Rotate · Flip">캔버스 크기 · 트림 · 회전 · 반전</li>
+            <li data-ko="블러 — Gaussian / Motion / Radial · Unsharp Mask" data-en="Blurs — Gaussian / Motion / Radial · Unsharp Mask">블러 · 언샤프 마스크</li>
+            <li data-ko="픽셀화 · 하이패스 · 미디언 · 엣지 검출" data-en="Pixelate · High Pass · Median · Find Edges">픽셀화 · 하이패스 · 엣지</li>
+            <li data-ko="왜곡 — 핀치 / 스피어라이즈 / 트월 · 엠보스 · 솔러라이즈" data-en="Distort — Pinch / Spherize / Twirl · Emboss · Solarize">왜곡 · 엠보스 · 솔러라이즈</li>
+            <li data-ko="렌더 — 클라우드 · 렌즈 플레어 · 노이즈 · 새 페이지 프리셋" data-en="Render — Clouds · Lens Flare · Noise · New Page presets">클라우드 · 렌즈 플레어 · 새 페이지 프리셋</li>
+            <li data-ko="퍼펫 워프 · 색상 교체 · 자동 향상 · 자동 레벨" data-en="Puppet Warp · Color Replace · Auto Enhance · Auto Levels">퍼펫 워프 · 자동 향상</li>
           </ul>
         </div>
 
         <div class="tk-panel" data-panel="layers">
           <h3 data-ko="통합 레이어 시스템" data-en="Unified layer system">통합 레이어 시스템</h3>
-          <p data-ko="이미지·텍스트·도형·드로잉·조정·그룹을 하나의 패널에서. 정렬·분포부터 그룹 마스크까지 전부." data-en="Image, text, shape, drawing, adjustment and group layers in one panel — from Align & Distribute to group masks.">이미지·텍스트·도형·드로잉·조정·그룹을 하나의 패널에서. 정렬·분포부터 그룹 마스크까지 전부.</p>
+          <p data-ko="이미지·텍스트·도형·드로잉·조정·그룹을 하나의 패널에서. 스마트 오브젝트·클리핑 마스크·3축 잠금·레이어 마스크까지 전부." data-en="Image, text, shape, drawing, adjustment and group layers in one panel — Smart Objects, Clipping Masks, 3-axis Lock, and full layer-mask controls.">이미지·텍스트·도형·드로잉·조정·그룹을 하나의 패널에서. 스마트 오브젝트·클리핑 마스크·3축 잠금·레이어 마스크까지 전부.</p>
           <ul class="tk-list">
-            <li data-ko="정돈 — 맨 앞 / 앞 / 뒤 / 맨 뒤 (Ctrl+Shift+])" data-en="Arrange — Front / Forward / Backward / Back">정돈 (Ctrl+Shift+])</li>
-            <li data-ko="정렬 · 분포 (가로 / 세로)" data-en="Align · Distribute (H / V)">정렬 · 분포</li>
-            <li data-ko="자유 변형 (Ctrl+T) — 이동·스케일·회전·스큐" data-en="Free Transform (Ctrl+T)">자유 변형 (Ctrl+T)</li>
-            <li data-ko="레이어 마스크 · 12가지 블렌드 모드" data-en="Layer masks · 12 blend modes">레이어 마스크 · 12 블렌드</li>
-            <li data-ko="5가지 효과 — 그림자 · 스트로크 · 글로우 · 오버레이" data-en="5 effects — Drop Shadow · Stroke · Glow · Overlays">5가지 레이어 효과</li>
-            <li data-ko="복제 (Ctrl+J) · 병합 (Ctrl+E)" data-en="Duplicate (Ctrl+J) · Merge (Ctrl+E)">복제 · 병합</li>
+            <li data-ko="16가지 블렌드 모드 · 5가지 레이어 효과" data-en="16 blend modes · 5 layer effects">16 블렌드 · 5 효과</li>
+            <li data-ko="스마트 오브젝트 — 비파괴 변형 보존" data-en="Smart Objects — preserve source for re-transform">스마트 오브젝트</li>
+            <li data-ko="레이어 마스크 — 추가·삭제·반전·적용·표시/숨김" data-en="Layer Mask — Add / Delete / Invert / Apply / Reveal / Hide">레이어 마스크 풀 컨트롤</li>
+            <li data-ko="클리핑 마스크 · 텍스트 래스터화 · 3축 잠금" data-en="Clipping Mask · Rasterize Text · 3-axis Lock">클리핑 마스크 · 잠금</li>
+            <li data-ko="자유 변형 (Ctrl+T) · 디스토트 · 퍼스펙티브" data-en="Free Transform (Ctrl+T) · Distort · Perspective">자유 변형 · 디스토트 · 퍼스펙티브</li>
+            <li data-ko="정돈 (Ctrl+⇧+]) · 정렬 · 분포 · 복제 (Ctrl+J) · 병합 (Ctrl+E)" data-en="Arrange · Align · Distribute · Duplicate (Ctrl+J) · Merge (Ctrl+E)">정돈 · 정렬 · 분포 · 복제 · 병합</li>
           </ul>
         </div>
 
         <div class="tk-panel" data-panel="adjust">
           <h3 data-ko="조정 · 필터 프리셋" data-en="Adjustments &amp; filter presets">조정 · 필터 프리셋</h3>
-          <p data-ko="모든 조정은 편집 가능한 조정 레이어. 한 번의 클릭으로 필터 12종." data-en="All adjustments land as editable adjustment layers. 12 one-click filter presets on top.">모든 조정은 편집 가능한 조정 레이어. 한 번의 클릭으로 필터 12종.</p>
+          <p data-ko="모든 조정은 편집 가능한 조정 레이어로 저장 — 15종. 한 번의 클릭으로 필터 12종까지." data-en="All 15 adjustments land as editable adjustment layers. 12 one-click filter presets on top.">모든 조정은 편집 가능한 조정 레이어로 저장 — 15종. 한 번의 클릭으로 필터 12종까지.</p>
           <ul class="tk-list">
-            <li data-ko="밝기 / 대비 · 레벨 (Ctrl+L)" data-en="Brightness / Contrast · Levels (Ctrl+L)">밝기 / 대비 · 레벨 (Ctrl+L)</li>
-            <li data-ko="곡선 (Ctrl+M) · 색조·채도 (Ctrl+U)" data-en="Curves (Ctrl+M) · Hue/Sat (Ctrl+U)">곡선 · 색조/채도</li>
-            <li data-ko="색상 균형" data-en="Color Balance">색상 균형</li>
-            <li data-ko="Vivid · B&amp;W · Film · Vintage" data-en="Vivid · B&amp;W · Film · Vintage">Vivid · B&amp;W · Film · Vintage</li>
-            <li data-ko="Cinematic · Warm · Cool · Bright" data-en="Cinematic · Warm · Cool · Bright">Cinematic · Warm · Cool · Bright</li>
-            <li data-ko="Moody · Faded · High contrast · Soft" data-en="Moody · Faded · High contrast · Soft">Moody · Faded · High contrast · Soft</li>
+            <li data-ko="밝기/대비 (Ctrl+B) · 레벨 (Ctrl+L) · 곡선 (Ctrl+M)" data-en="Brightness/Contrast · Levels · Curves">밝기/대비 · 레벨 · 곡선</li>
+            <li data-ko="색조/채도 (Ctrl+U) · 색상 균형 · 노출 · 활기" data-en="Hue/Sat · Color Balance · Exposure · Vibrance">색조/채도 · 색상 균형 · 노출 · 활기</li>
+            <li data-ko="섀도/하이라이트 · 흑백 · 포토 필터 · 채널 믹서" data-en="Shadows/Highlights · B&amp;W · Photo Filter · Channel Mixer">섀도/하이라이트 · 흑백 · 포토 필터</li>
+            <li data-ko="반전 · 포스터라이즈 · 임계값 · 그라디언트 맵" data-en="Invert · Posterize · Threshold · Gradient Map">반전 · 포스터라이즈 · 임계값 · 그라디언트 맵</li>
+            <li data-ko="Vivid · B&amp;W · Film · Vintage · Cinematic · Warm" data-en="Vivid · B&amp;W · Film · Vintage · Cinematic · Warm">Vivid · B&amp;W · Film · Vintage · Cinematic</li>
+            <li data-ko="Cool · Bright · Moody · Faded · High contrast · Soft" data-en="Cool · Bright · Moody · Faded · High contrast · Soft">Cool · Bright · Moody · Faded · Soft</li>
           </ul>
         </div>
 
@@ -499,9 +509,9 @@
           <h3 data-ko="프로젝트 &amp; 내보내기" data-en="Project &amp; export">프로젝트 &amp; 내보내기</h3>
           <p data-ko=".vora 파일 하나에 모든 페이지와 레이어. 웹, 인스타그램, 프린트, 슬라이드까지 프리셋으로." data-en=".vora files hold all pages & layers in one doc. Presets cover web, Instagram, print, slides.">.vora 파일 하나에 모든 페이지와 레이어. 웹, 인스타그램, 프린트, 슬라이드까지 프리셋으로.</p>
           <ul class="tk-list">
-            <li data-ko=".vora 프로젝트 — gzip 압축, 구버전 호환" data-en=".vora — gzip-compressed, back-compat">.vora 프로젝트 — gzip 압축</li>
+            <li data-ko=".vora 프로젝트 — gzip 압축 (0.1.6+, 60–70% 절약)" data-en=".vora — gzip-compressed since 0.1.6 (60–70% smaller)">.vora 프로젝트 — gzip 압축</li>
             <li data-ko="최근 파일 — 최근 10개 프로젝트 기억" data-en="Open Recent — last 10 projects">최근 파일 10개</li>
-            <li data-ko="PNG · JPG · WebP 내보내기" data-en="Export PNG · JPG · WebP">PNG · JPG · WebP</li>
+            <li data-ko="PNG · JPG · WebP · SVG 내보내기" data-en="Export PNG · JPG · WebP · SVG">PNG · JPG · WebP · SVG</li>
             <li data-ko="멀티페이지 PDF · 편집 가능 PPTX" data-en="Multi-page PDF · editable PPTX">PDF · 편집 PPTX</li>
             <li data-ko="프리셋 — Web · 인스타그램 · 고품질 · 슬라이드" data-en="Presets — Web · Instagram · HQ · Slides">내보내기 프리셋</li>
             <li data-ko="배치 내보내기 · 1×–8× 스케일" data-en="Batch export · 1×–8× scale">배치 · 1×–8×</li>
@@ -510,16 +520,15 @@
 
         <div class="tk-panel" data-panel="flow">
           <h3 data-ko="워크플로우" data-en="Workflow">워크플로우</h3>
-          <p data-ko="멀티페이지, 스마트 가이드, 커맨드 팔레트 — 집중을 방해하지 않는 작은 편의 기능들이 전부 들어 있습니다." data-en="Multi-page, smart guides, command palette — the little affordances that keep you in flow.">멀티페이지, 스마트 가이드, 커맨드 팔레트 — 집중을 방해하지 않는 작은 편의 기능들이 전부 들어 있습니다.</p>
+          <p data-ko="멀티 프로젝트 탭, 스마트 가이드, 커맨드 팔레트 — 집중을 방해하지 않는 작은 편의 기능들이 전부 들어 있습니다." data-en="Multi-project tabs, smart guides, command palette — the little affordances that keep you in flow.">멀티 프로젝트 탭, 스마트 가이드, 커맨드 팔레트 — 집중을 방해하지 않는 작은 편의 기능들이 전부 들어 있습니다.</p>
           <ul class="tk-list">
-            <li data-ko="멀티페이지 — 필름스트립, 복제/삭제" data-en="Multi-page — filmstrip, duplicate/delete">멀티페이지 · 필름스트립</li>
-            <li data-ko="스마트 가이드 — 드래그 스냅" data-en="Smart Guides — drag snap">스마트 가이드</li>
-            <li data-ko="커맨드 팔레트 (Ctrl+K)" data-en="Command Palette (Ctrl+K)">커맨드 팔레트</li>
-            <li data-ko="퀵 마스크 (Q)" data-en="Quick Mask (Q)">퀵 마스크 (Q)</li>
-            <li data-ko="눈금자 · 그리드 · 가이드" data-en="Rulers · Grid · Guides">눈금자 · 그리드 · 가이드</li>
-            <li data-ko="자동 저장 · 재실행 시 복원" data-en="Auto-save · restore on next launch">자동 저장 · 복원</li>
-            <li data-ko="한국어 / 영어 — OS 언어 자동 감지" data-en="KO / EN — OS-language auto-detect">KO / EN 자동 감지</li>
-            <li data-ko=".vora 더블클릭 열기" data-en=".vora double-click to open">.vora 파일 연결</li>
+            <li data-ko="멀티 프로젝트 탭 (Ctrl+Tab · Ctrl+1…9)" data-en="Multi-project tabs (Ctrl+Tab · Ctrl+1…9)">멀티 프로젝트 탭</li>
+            <li data-ko="새 창 (⇧+Ctrl+N) — 독립 프로세스, 크래시 격리" data-en="New Window (Shift+Ctrl+N) — separate process, crash isolation">새 창 — 크래시 격리</li>
+            <li data-ko="멀티페이지 · 필름스트립 · 페이지 복제·삭제" data-en="Multi-page · filmstrip · duplicate/delete">멀티페이지 · 필름스트립</li>
+            <li data-ko="측정 도구 (⇧+I) · 스마트 가이드 · 퀵 마스크 (Q)" data-en="Measure Tool (Shift+I) · Smart Guides · Quick Mask (Q)">측정 · 스마트 가이드 · 퀵 마스크</li>
+            <li data-ko="커맨드 팔레트 (Ctrl+K) · 눈금자 · 그리드 · 가이드" data-en="Command Palette · Rulers · Grid · Guides">커맨드 팔레트 · 눈금자</li>
+            <li data-ko="패턴 채우기 · 스트로크 · 클립보드 이미지 붙여넣기" data-en="Pattern Fill · Stroke · Paste Image from Clipboard">패턴 채우기 · 스트로크 · 클립보드 붙여넣기</li>
+            <li data-ko="자동 저장 · 복원 · KO/EN 자동 감지 · .vora 파일 연결" data-en="Auto-save · restore · KO/EN detect · .vora file association">자동 저장 · KO/EN · .vora 연결</li>
           </ul>
         </div>
       </div>
@@ -535,7 +544,7 @@
       <span data-ko="Photoshop과" data-en="Same keys as">Photoshop과</span>
       <span class="thin" data-ko="같은 손가락." data-en="Photoshop.">같은 손가락.</span>
     </h2>
-    <p class="sec-lede" data-ko="기존 워크플로우를 그대로 옮겨 오세요. 주요 단축키 30여 개가 1:1로 동작합니다." data-en="Bring your workflow with you — 30+ core shortcuts behave exactly the same.">기존 워크플로우를 그대로 옮겨 오세요. 주요 단축키 30여 개가 1:1로 동작합니다.</p>
+    <p class="sec-lede" data-ko="기존 워크플로우를 그대로 옮겨 오세요. 주요 단축키 50여 개가 1:1로 동작합니다." data-en="Bring your workflow with you — 50+ core shortcuts behave exactly the same.">기존 워크플로우를 그대로 옮겨 오세요. 주요 단축키 50여 개가 1:1로 동작합니다.</p>
 
     <div class="kb-wrap">
       <div class="kb-col" data-reveal>
@@ -543,15 +552,20 @@
         <div class="kb-list">
           <div class="kb-row"><span class="label" data-ko="이동" data-en="Move">이동</span><span class="kb-keys"><kbd>V</kbd></span></div>
           <div class="kb-row"><span class="label" data-ko="사각 선택" data-en="Rect marquee">사각 선택</span><span class="kb-keys"><kbd>M</kbd></span></div>
-          <div class="kb-row"><span class="label" data-ko="올가미" data-en="Lasso">올가미</span><span class="kb-keys"><kbd>L</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="올가미 (3 모드 순환)" data-en="Lasso (cycle 3)">올가미 (3 모드)</span><span class="kb-keys"><kbd>L</kbd></span></div>
           <div class="kb-row"><span class="label" data-ko="매직 완드" data-en="Magic Wand">매직 완드</span><span class="kb-keys"><kbd>W</kbd></span></div>
           <div class="kb-row"><span class="label" data-ko="브러시 / 펜" data-en="Brush / Pen">브러시 / 펜</span><span class="kb-keys"><kbd>B</kbd></span></div>
           <div class="kb-row"><span class="label" data-ko="지우개" data-en="Eraser">지우개</span><span class="kb-keys"><kbd>E</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="페인트 버킷" data-en="Paint Bucket">페인트 버킷</span><span class="kb-keys"><kbd>K</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="클론 스탬프" data-en="Clone Stamp">클론 스탬프</span><span class="kb-keys"><kbd>S</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="힐링 브러시" data-en="Healing Brush">힐링 브러시</span><span class="kb-keys"><kbd>J</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="히스토리 브러시" data-en="History Brush">히스토리 브러시</span><span class="kb-keys"><kbd>Y</kbd></span></div>
           <div class="kb-row"><span class="label" data-ko="텍스트" data-en="Text">텍스트</span><span class="kb-keys"><kbd>T</kbd></span></div>
           <div class="kb-row"><span class="label" data-ko="도형" data-en="Shape">도형</span><span class="kb-keys"><kbd>U</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="그라디언트" data-en="Gradient">그라디언트</span><span class="kb-keys"><kbd>G</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="스포이드" data-en="Eyedropper">스포이드</span><span class="kb-keys"><kbd>I</kbd></span></div>
           <div class="kb-row"><span class="label" data-ko="자르기" data-en="Crop">자르기</span><span class="kb-keys"><kbd>C</kbd></span></div>
-          <div class="kb-row"><span class="label" data-ko="핸드 · 팬" data-en="Hand · Pan">핸드 · 팬</span><span class="kb-keys"><kbd>H</kbd></span></div>
-          <div class="kb-row"><span class="label" data-ko="퀵 마스크" data-en="Quick Mask">퀵 마스크</span><span class="kb-keys"><kbd>Q</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="줌 · 핸드 · 퀵 마스크" data-en="Zoom · Hand · Quick Mask">줌 · 핸드 · 퀵 마스크</span><span class="kb-keys"><kbd>Z</kbd><span class="kb-plus">/</span><kbd>H</kbd><span class="kb-plus">/</span><kbd>Q</kbd></span></div>
         </div>
       </div>
 
@@ -559,16 +573,20 @@
         <h4 data-ko="편집 · 파일" data-en="Edit · File">편집 · 파일</h4>
         <div class="kb-list">
           <div class="kb-row"><span class="label" data-ko="실행 취소" data-en="Undo">실행 취소</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>Z</kbd></span></div>
-          <div class="kb-row"><span class="label" data-ko="저장" data-en="Save">저장</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>S</kbd></span></div>
-          <div class="kb-row"><span class="label" data-ko="열기" data-en="Open">열기</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>O</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="새 페이지" data-en="New page">새 페이지</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>N</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="새 프로젝트" data-en="New project">새 프로젝트</span><span class="kb-keys"><kbd>⇧</kbd><span class="kb-plus">+</span><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>T</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="저장 / 열기" data-en="Save / Open">저장 / 열기</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>S</kbd><span class="kb-plus">/</span><kbd>O</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="프로젝트 닫기" data-en="Close project">프로젝트 닫기</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>W</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="다음 / 이전 프로젝트" data-en="Next / prev project">다음 / 이전 프로젝트</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>Tab</kbd></span></div>
           <div class="kb-row"><span class="label" data-ko="레이어 복제" data-en="Duplicate layer">레이어 복제</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>J</kbd></span></div>
           <div class="kb-row"><span class="label" data-ko="레이어 병합" data-en="Merge layers">레이어 병합</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>E</kbd></span></div>
           <div class="kb-row"><span class="label" data-ko="자유 변형" data-en="Free Transform">자유 변형</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>T</kbd></span></div>
-          <div class="kb-row"><span class="label" data-ko="전체 선택" data-en="Select All">전체 선택</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>A</kbd></span></div>
           <div class="kb-row"><span class="label" data-ko="병합 복사" data-en="Copy Merged">병합 복사</span><span class="kb-keys"><kbd>⇧</kbd><span class="kb-plus">+</span><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>C</kbd></span></div>
           <div class="kb-row"><span class="label" data-ko="채우기" data-en="Fill">채우기</span><span class="kb-keys"><kbd>⇧</kbd><span class="kb-plus">+</span><kbd>F5</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="이미지 크기" data-en="Image Size">이미지 크기</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>Alt</kbd><span class="kb-plus">+</span><kbd>I</kbd></span></div>
           <div class="kb-row"><span class="label" data-ko="커맨드 팔레트" data-en="Command Palette">커맨드 팔레트</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>K</kbd></span></div>
           <div class="kb-row"><span class="label" data-ko="새 창" data-en="New Window">새 창</span><span class="kb-keys"><kbd>⇧</kbd><span class="kb-plus">+</span><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>N</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="가져오기" data-en="Import">가져오기</span><span class="kb-keys"><kbd>⇧</kbd><span class="kb-plus">+</span><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>I</kbd></span></div>
         </div>
       </div>
 
@@ -577,15 +595,19 @@
         <div class="kb-list">
           <div class="kb-row"><span class="label" data-ko="눈금자" data-en="Rulers">눈금자</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>R</kbd></span></div>
           <div class="kb-row"><span class="label" data-ko="그리드" data-en="Grid">그리드</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>'</kbd></span></div>
-          <div class="kb-row"><span class="label" data-ko="실제 크기" data-en="Actual size">실제 크기</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>1</kbd></span></div>
-          <div class="kb-row"><span class="label" data-ko="화면에 맞추기" data-en="Fit view">화면에 맞추기</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>0</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="실제 크기 / 화면 맞춤" data-en="Actual / Fit">실제 크기 / 화면 맞춤</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>1</kbd><span class="kb-plus">/</span><kbd>0</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="확대 / 축소" data-en="Zoom in / out">확대 / 축소</span><span class="kb-keys"><kbd>+</kbd><span class="kb-plus">/</span><kbd>−</kbd></span></div>
           <div class="kb-row"><span class="label" data-ko="일시 이동" data-en="Pan (hold)">일시 이동</span><span class="kb-keys"><kbd>Space</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="밝기 / 대비" data-en="Brightness/Contrast">밝기 / 대비</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>B</kbd></span></div>
           <div class="kb-row"><span class="label" data-ko="레벨" data-en="Levels">레벨</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>L</kbd></span></div>
           <div class="kb-row"><span class="label" data-ko="곡선" data-en="Curves">곡선</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>M</kbd></span></div>
           <div class="kb-row"><span class="label" data-ko="색조 / 채도" data-en="Hue / Sat">색조 / 채도</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>U</kbd></span></div>
-          <div class="kb-row"><span class="label" data-ko="브러시 크기 −" data-en="Brush size −">브러시 크기 −</span><span class="kb-keys"><kbd>[</kbd></span></div>
-          <div class="kb-row"><span class="label" data-ko="브러시 크기 +" data-en="Brush size +">브러시 크기 +</span><span class="kb-keys"><kbd>]</kbd></span></div>
-          <div class="kb-row"><span class="label" data-ko="FG / BG 교체" data-en="Swap FG / BG">FG / BG 교체</span><span class="kb-keys"><kbd>X</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="이미지 반전" data-en="Invert Image">이미지 반전</span><span class="kb-keys"><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>I</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="채도 제거" data-en="Desaturate">채도 제거</span><span class="kb-keys"><kbd>⇧</kbd><span class="kb-plus">+</span><kbd>Ctrl</kbd><span class="kb-plus">+</span><kbd>U</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="브러시 크기 − / +" data-en="Brush size − / +">브러시 크기 − / +</span><span class="kb-keys"><kbd>[</kbd><span class="kb-plus">/</span><kbd>]</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="기본 색상 / 교체" data-en="Default / Swap">기본 색상 / 교체</span><span class="kb-keys"><kbd>D</kbd><span class="kb-plus">/</span><kbd>X</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="측정 도구" data-en="Measure Tool">측정 도구</span><span class="kb-keys"><kbd>⇧</kbd><span class="kb-plus">+</span><kbd>I</kbd></span></div>
+          <div class="kb-row"><span class="label" data-ko="매직 지우개 / 스머지 / 샤픈" data-en="Magic Erase / Smudge / Sharpen">매직 / 스머지 / 샤픈</span><span class="kb-keys"><kbd>⇧</kbd><span class="kb-plus">+</span><kbd>E</kbd><span class="kb-plus">/</span><kbd>R</kbd></span></div>
         </div>
       </div>
     </div>
@@ -649,11 +671,11 @@
       </details>
       <details>
         <summary data-ko="Photoshop의 대안으로 쓸 수 있나요?" data-en="Can Vora replace Photoshop?">Photoshop의 대안으로 쓸 수 있나요?</summary>
-        <p data-ko="레이어, 마스크, 조정 레이어, 12가지 블렌드 모드, 클론 스탬프·힐링 브러시·히스토리 브러시 등 Photoshop의 핵심 기능을 갖추고 있으며, 주요 단축키 30여 개가 1:1로 정렬되어 있어 워크플로우를 그대로 옮길 수 있습니다." data-en="Vora ships layers, masks, non-destructive adjustment layers, 12 blend modes, Clone Stamp, Healing Brush, and History Brush — with 30+ shortcuts aligned 1:1 to Photoshop so you can bring your muscle memory over.">레이어, 마스크, 조정 레이어, 12가지 블렌드 모드, 클론 스탬프·힐링 브러시·히스토리 브러시 등 Photoshop의 핵심 기능을 갖추고 있으며, 주요 단축키 30여 개가 1:1로 정렬되어 있어 워크플로우를 그대로 옮길 수 있습니다.</p>
+        <p data-ko="레이어, 마스크, 클리핑 마스크, 스마트 오브젝트, 15가지 조정 레이어, 16가지 블렌드 모드, 클론 스탬프·힐링 브러시·히스토리 브러시·매직 지우개·스머지·샤픈·리퀴파이까지 Photoshop의 핵심 기능을 갖추고 있으며, 주요 단축키 50여 개가 1:1로 정렬되어 있어 워크플로우를 그대로 옮길 수 있습니다." data-en="Vora ships layers, masks, clipping masks, smart objects, 15 non-destructive adjustment layers, 16 blend modes, Clone Stamp, Healing Brush, History Brush, Magic Eraser, Smudge, Sharpen, and Liquify — with 50+ shortcuts aligned 1:1 to Photoshop so you can bring your muscle memory over.">레이어, 마스크, 클리핑 마스크, 스마트 오브젝트, 15가지 조정 레이어, 16가지 블렌드 모드, 클론 스탬프·힐링 브러시·히스토리 브러시·매직 지우개·스머지·샤픈·리퀴파이까지 Photoshop의 핵심 기능을 갖추고 있으며, 주요 단축키 50여 개가 1:1로 정렬되어 있어 워크플로우를 그대로 옮길 수 있습니다.</p>
       </details>
       <details>
         <summary data-ko="어떤 파일 형식으로 내보낼 수 있나요?" data-en="What formats can Vora export?">어떤 파일 형식으로 내보낼 수 있나요?</summary>
-        <p data-ko="PNG, JPG, WebP, 멀티 페이지 PDF, 그리고 텍스트 레이어가 실제 편집 가능한 상태로 보존되는 PPTX를 지원합니다. 프로젝트는 .vora 파일로 저장되어 모든 페이지와 레이어가 하나의 문서에 들어갑니다." data-en="PNG, JPG, WebP, multi-page PDF, and PPTX — with text layers preserved as real editable text. Projects save as .vora files that hold all pages and layers in a single document.">PNG, JPG, WebP, 멀티 페이지 PDF, 그리고 텍스트 레이어가 실제 편집 가능한 상태로 보존되는 PPTX를 지원합니다. 프로젝트는 .vora 파일로 저장되어 모든 페이지와 레이어가 하나의 문서에 들어갑니다.</p>
+        <p data-ko="PNG, JPG, WebP, 멀티 페이지 PDF, 텍스트 레이어가 실제 편집 가능한 상태로 보존되는 PPTX, 그리고 SVG를 지원합니다. 프로젝트는 .vora 파일로 저장되어 모든 페이지와 레이어가 하나의 문서에 들어가며, 0.1.6부터는 gzip 압축으로 디스크 사용량이 60–70% 줄어듭니다." data-en="PNG, JPG, WebP, multi-page PDF, PPTX with editable text, and SVG. Projects save as .vora files that hold all pages and layers in a single document — gzip-compressed since 0.1.6, so they're 60–70% smaller on disk.">PNG, JPG, WebP, 멀티 페이지 PDF, 텍스트 레이어가 실제 편집 가능한 상태로 보존되는 PPTX, 그리고 SVG를 지원합니다. 프로젝트는 .vora 파일로 저장되어 모든 페이지와 레이어가 하나의 문서에 들어가며, 0.1.6부터는 gzip 압축으로 디스크 사용량이 60–70% 줄어듭니다.</p>
       </details>
       <details>
         <summary data-ko="Linux는 지원하나요?" data-en="Is Linux supported?">Linux는 지원하나요?</summary>
@@ -688,6 +710,6 @@
   </div>
 </footer>
 
-<script src="/assets/app.js?v=20260419b" defer></script>
+<script src="/assets/app.js?v=20260421a" defer></script>
 </body>
 </html>
