@@ -243,6 +243,7 @@ nav.site-nav.scrolled {
 /* floating chips */
 .chip {
   position: absolute;
+  z-index: 5;
   padding: 8px 14px; border-radius: 10px;
   background: rgba(17, 20, 28, 0.9);
   backdrop-filter: blur(10px);
