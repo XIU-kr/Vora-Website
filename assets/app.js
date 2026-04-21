@@ -3,9 +3,12 @@
 
   const html = document.documentElement;
   const LS_LANG = 'voraLang';
-  const LS_OS = 'voraOS';
   const REPO = 'XIU-kr/Vora';
   const FALLBACK_URL = 'https://github.com/' + REPO + '/releases/latest';
+
+  // Module-scope: latest tag pulled from the GitHub API. Re-rendered into
+  // the hero eyebrow on every applyLang() so the version survives lang toggles.
+  let latestTag = '';
 
   // ---------- i18n ----------
   const detectLang = () => {
@@ -16,10 +19,19 @@
     return (navigator.language || 'ko').toLowerCase().startsWith('ko') ? 'ko' : 'en';
   };
 
+  const renderVersionLabel = (lang) => {
+    const el = document.getElementById('version-label');
+    if (!el) return;
+    const suffix = lang === 'ko'
+      ? (el.getAttribute('data-ko-suffix') || 'macOS · Windows 지원')
+      : (el.getAttribute('data-en-suffix') || 'macOS · Windows');
+    el.textContent = latestTag ? `v${latestTag} · ${suffix}` : suffix;
+  };
+
   const applyLang = (lang) => {
     html.setAttribute('lang', lang);
     html.setAttribute('data-lang', lang);
-    localStorage.setItem(LS_LANG, lang);
+    try { localStorage.setItem(LS_LANG, lang); } catch (_) {}
 
     document.querySelectorAll('[data-ko]').forEach(el => {
       const ko = el.getAttribute('data-ko');
@@ -29,17 +41,25 @@
     });
 
     document.querySelectorAll('[data-ko-content][data-en-content]').forEach(el => {
-      el.setAttribute('content', lang === 'ko' ? el.getAttribute('data-ko-content') : el.getAttribute('data-en-content'));
+      el.setAttribute('content', lang === 'ko'
+        ? el.getAttribute('data-ko-content')
+        : el.getAttribute('data-en-content'));
     });
 
     const titleEl = document.querySelector('title[data-ko]');
-    if (titleEl) document.title = lang === 'ko' ? titleEl.getAttribute('data-ko') : titleEl.getAttribute('data-en');
+    if (titleEl) {
+      document.title = lang === 'ko'
+        ? titleEl.getAttribute('data-ko')
+        : titleEl.getAttribute('data-en');
+    }
 
     document.querySelectorAll('[data-set-lang]').forEach(btn => {
       const active = btn.getAttribute('data-set-lang') === lang;
-      btn.classList.toggle('is-active', active);
+      btn.classList.toggle('active', active);
       btn.setAttribute('aria-pressed', String(active));
     });
+
+    renderVersionLabel(lang);
   };
 
   document.querySelectorAll('[data-set-lang]').forEach(btn => {
@@ -47,126 +67,58 @@
   });
   applyLang(detectLang());
 
-  // ---------- downloads ----------
+  // ---------- downloads (GitHub API) ----------
   const matchOS = (name) => {
-    const n = name.toLowerCase();
+    const n = (name || '').toLowerCase();
     if (n.endsWith('.dmg')) return 'macos';
     if (n.endsWith('-setup.exe') || n.endsWith('.msi') || n.endsWith('.exe')) return 'windows';
     return null;
   };
-  const labelFor = (key) => ({ windows: 'Windows', macos: 'macOS' }[key] || 'Download');
 
-  const detectOS = () => {
-    const saved = localStorage.getItem(LS_OS);
-    if (saved === 'windows' || saved === 'macos') return saved;
-    const ua = (navigator.userAgent || '').toLowerCase();
-    const plat = ((navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '').toLowerCase();
-    if (plat.includes('mac') || ua.includes('mac os')) return 'macos';
-    return 'windows';
-  };
-
-  const dlMain = document.getElementById('dl-main');
-  const dlName = document.getElementById('dl-os-name');
-  const dlToggle = document.getElementById('dl-toggle');
-  const dlMenu = document.getElementById('dl-menu');
-
-  const osUrls = { windows: FALLBACK_URL, macos: FALLBACK_URL };
-  document.querySelectorAll('a[data-os]').forEach(a => {
-    const key = a.getAttribute('data-os');
-    const h = a.getAttribute('href');
-    if (key && h && /^https?:\/\//.test(h)) osUrls[key] = h;
-  });
-
-  let currentOS = detectOS();
-
-  const renderMenu = () => {
-    document.querySelectorAll('a[data-os]').forEach(a => {
-      const key = a.getAttribute('data-os');
-      const url = osUrls[key];
-      if (url && url !== FALLBACK_URL) {
-        a.href = url;
-        a.setAttribute('download', '');
-      } else {
-        a.href = FALLBACK_URL;
-        a.removeAttribute('download');
-      }
+  const applyAsset = (os, asset) => {
+    if (!os || !asset) return;
+    document.querySelectorAll(`a[data-os="${os}"]`).forEach(a => {
+      a.href = asset.browser_download_url;
+      a.setAttribute('download', '');
+    });
+    document.querySelectorAll(`[data-fname="${os}"]`).forEach(el => {
+      el.textContent = asset.name;
     });
   };
 
-  const applyOS = (os) => {
-    if (!osUrls[os]) return;
-    currentOS = os;
-    localStorage.setItem(LS_OS, os);
-    if (dlName) dlName.textContent = labelFor(os);
-    if (dlMain) {
-      const url = osUrls[os];
-      if (url && url !== FALLBACK_URL) {
-        dlMain.href = url;
-        dlMain.setAttribute('download', '');
-      } else {
-        dlMain.href = FALLBACK_URL;
-        dlMain.removeAttribute('download');
-      }
-    }
-  };
-
-  renderMenu();
-  applyOS(currentOS);
-
-  // Fetch actual release assets + version label
   fetch('https://api.github.com/repos/' + REPO + '/releases/latest', {
     headers: { 'Accept': 'application/vnd.github+json' }
   }).then(r => r.ok ? r.json() : null).then(data => {
     if (!data) return;
+    if (data.tag_name) {
+      latestTag = String(data.tag_name).replace(/^v/, '');
+      renderVersionLabel(html.getAttribute('data-lang') || 'ko');
+    }
     if (Array.isArray(data.assets)) {
       data.assets.forEach(asset => {
-        const key = matchOS(asset.name || '');
-        if (key && osUrls[key] !== undefined) osUrls[key] = asset.browser_download_url;
+        const os = matchOS(asset.name);
+        if (os) applyAsset(os, asset);
       });
-      renderMenu();
-      applyOS(currentOS);
     }
-    const vl = document.getElementById('version-label');
-    if (vl && data.tag_name) vl.textContent = 'v' + String(data.tag_name).replace(/^v/, '') + ' · GitHub Releases';
   }).catch(() => {});
 
-  // menu toggle
-  if (dlToggle && dlMenu) {
-    const closeMenu = () => { dlMenu.hidden = true; dlToggle.setAttribute('aria-expanded', 'false'); };
-    const openMenu  = () => { dlMenu.hidden = false; dlToggle.setAttribute('aria-expanded', 'true'); };
-    dlToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      dlMenu.hidden ? openMenu() : closeMenu();
-    });
-    document.addEventListener('click', (e) => {
-      if (!dlMenu.hidden && !dlMenu.contains(e.target) && e.target !== dlToggle) closeMenu();
-    });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
-    dlMenu.querySelectorAll('a[data-os]').forEach(a => {
-      a.addEventListener('click', () => {
-        applyOS(a.getAttribute('data-os'));
-        closeMenu();
-      });
-    });
-  }
-
-  // ---------- reveal ----------
+  // ---------- reveal on scroll ----------
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!reduced && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
+          entry.target.classList.add('in');
           io.unobserve(entry.target);
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   } else {
-    document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-visible'));
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
   }
 
-  // ---------- nav scroll ----------
+  // ---------- nav scroll state ----------
   const nav = document.getElementById('nav');
   if (nav) {
     const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
@@ -174,56 +126,15 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  // ---------- before/after slider ----------
-  const ba = document.getElementById('ba');
-  const baHandle = document.getElementById('ba-handle');
-  if (ba && baHandle) {
-    let dragging = false;
-    const setPct = (clientX) => {
-      const rect = ba.getBoundingClientRect();
-      const pct = Math.max(4, Math.min(96, ((clientX - rect.left) / rect.width) * 100));
-      ba.style.setProperty('--sp', pct + '%');
-    };
-    const onMove = (e) => {
-      if (!dragging) return;
-      const x = e.touches ? e.touches[0].clientX : e.clientX;
-      setPct(x);
+  // ---------- smooth scroll for in-page anchors ----------
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      if (!href || href.length < 2) return;
+      const target = document.querySelector(href);
+      if (!target) return;
       e.preventDefault();
-    };
-    const onUp = () => { dragging = false; document.body.style.userSelect = ''; };
-    baHandle.addEventListener('mousedown', (e) => { dragging = true; document.body.style.userSelect = 'none'; onMove(e); });
-    baHandle.addEventListener('touchstart', (e) => { dragging = true; onMove(e); }, { passive: true });
-    document.addEventListener('mousemove', onMove);
-    document.addEventListener('touchmove', onMove, { passive: false });
-    document.addEventListener('mouseup', onUp);
-    document.addEventListener('touchend', onUp);
-
-    // auto sweep until user interacts
-    let userInteracted = false;
-    const stop = () => { userInteracted = true; };
-    baHandle.addEventListener('mousedown', stop);
-    baHandle.addEventListener('touchstart', stop);
-    ba.addEventListener('mouseenter', stop);
-    let t = 0;
-    const tick = () => {
-      if (userInteracted) return;
-      t += 0.012;
-      const p = 50 + Math.sin(t) * 32;
-      ba.style.setProperty('--sp', p + '%');
-      requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  }
-
-  // ---------- toolkit tabs ----------
-  const tkRail = document.querySelector('.tk-rail');
-  if (tkRail) {
-    tkRail.addEventListener('click', (e) => {
-      const btn = e.target.closest('button[data-tk]');
-      if (!btn) return;
-      const key = btn.getAttribute('data-tk');
-      tkRail.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === btn));
-      document.querySelectorAll('.tk-panel').forEach(p => p.classList.toggle('active', p.getAttribute('data-panel') === key));
+      target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
     });
-  }
+  });
 })();

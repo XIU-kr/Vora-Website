@@ -3,15 +3,17 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="theme-color" content="#08090c" />
+<meta name="theme-color" content="#0B0D14" />
 <meta name="color-scheme" content="dark" />
 <title data-ko="개인정보처리방침 · Vora" data-en="Privacy Policy · Vora">개인정보처리방침 · Vora</title>
 <meta name="description" content="Vora 웹사이트 개인정보처리방침" />
 <meta name="robots" content="noindex,follow" />
 <link rel="canonical" href="https://vora.xiu.kr/privacy/" />
 <link rel="icon" type="image/png" href="/assets/logo.png" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
-<link rel="stylesheet" href="/assets/style.css?v=20260421a" />
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" />
+<link rel="stylesheet" href="/assets/style.css?v=20260421b" />
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8QDZQ70QN6"></script>
@@ -28,171 +30,167 @@
 </head>
 <body>
 
-<header class="nav" id="nav">
-  <div class="container nav-inner">
+<div class="ambient"></div>
+<div class="grid-overlay"></div>
+
+<div class="wrap">
+
+  <nav class="site-nav" id="nav">
     <a class="brand" href="/" aria-label="Vora home">
-      <img class="brand-mark" src="/assets/logo.png" alt="" width="28" height="28" decoding="async"/>
-      <span class="brand-name">Vora</span>
+      <img src="/assets/logo.png" alt="" width="30" height="30" decoding="async" />
+      <span>Vora</span>
     </a>
-    <nav class="nav-links" aria-label="primary">
-      <a href="/#pillars" data-ko="개요" data-en="Overview">개요</a>
-      <a href="/#toolkit" data-ko="기능" data-en="Tools">기능</a>
+    <div class="nav-links">
+      <a href="/#features" data-ko="기능" data-en="Features">기능</a>
+      <a href="/#specs" data-ko="사양" data-en="Specs">사양</a>
       <a href="/#shortcuts" data-ko="단축키" data-en="Shortcuts">단축키</a>
-      <a href="/#download" data-ko="다운로드" data-en="Download">다운로드</a>
-    </nav>
+      <a href="/github" rel="noopener">GitHub</a>
+    </div>
     <div class="nav-right">
-      <div class="lang" role="group" aria-label="Language">
-        <button type="button" data-set-lang="ko" class="is-active">KO</button>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-set-lang="ko" class="active">KO</button>
         <button type="button" data-set-lang="en">EN</button>
       </div>
-      <a class="btn btn-ghost btn-sm" href="/github" rel="noopener">
-        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-        <span>GitHub</span>
-      </a>
+      <a class="nav-cta" href="/#download" data-ko="다운로드" data-en="Download">다운로드</a>
     </div>
-  </div>
-</header>
+  </nav>
 
-<main id="main">
-<section class="section">
-  <div class="container" style="max-width: 760px;">
-    <header class="sec-head" style="text-align: left;">
-      <span class="eyebrow" data-ko="법적 고지" data-en="Legal">법적 고지</span>
-      <h1 style="font-size: clamp(32px, 4.2vw, 44px); font-weight: 800; letter-spacing: -0.03em; margin: 8px 0 12px;" data-ko="개인정보처리방침" data-en="Privacy Policy">개인정보처리방침</h1>
-      <p class="muted" style="font-size: 13.5px;" data-ko="최종 업데이트: 2026-04-13" data-en="Last updated: 2026-04-13">최종 업데이트: 2026-04-13</p>
-    </header>
+  <main>
+    <div class="privacy-wrap">
+      <span class="eyebrow" style="margin-bottom: 16px;" data-ko="법적 고지" data-en="Legal">법적 고지</span>
+      <h1 data-ko="개인정보처리방침" data-en="Privacy Policy">개인정보처리방침</h1>
+      <p class="muted" data-ko="최종 업데이트: 2026-04-13" data-en="Last updated: 2026-04-13">최종 업데이트: 2026-04-13</p>
 
-    <article class="privacy" data-lang-section>
-      <!-- KO -->
-      <div data-ko-block>
-        <p class="lede">Vora(이하 "서비스")는 <b>https://vora.xiu.kr</b> 웹사이트 이용자에게 적용되는 개인정보처리방침을 아래와 같이 공개합니다. 본 방침은 웹사이트에만 적용되며, 데스크톱 애플리케이션은 별도의 데이터를 전송하지 않습니다.</p>
+      <article class="privacy">
+        <div data-ko-block>
+          <p class="lede">Vora(이하 "서비스")는 <b>https://vora.xiu.kr</b> 웹사이트 이용자에게 적용되는 개인정보처리방침을 아래와 같이 공개합니다. 본 방침은 웹사이트에만 적용되며, 데스크톱 애플리케이션은 별도의 데이터를 전송하지 않습니다.</p>
 
-        <h2>1. 수집하지 않는 정보</h2>
-        <ul class="bullets">
-          <li>이름, 이메일, 전화번호 등 직접 식별 정보</li>
-          <li>로그인·회원가입 관련 정보 (본 웹사이트에는 계정 시스템이 없습니다)</li>
-          <li>결제 정보 (Vora는 무료 오픈소스이며 결제를 받지 않습니다)</li>
-        </ul>
+          <h2>1. 수집하지 않는 정보</h2>
+          <ul class="bullets">
+            <li>이름, 이메일, 전화번호 등 직접 식별 정보</li>
+            <li>로그인·회원가입 관련 정보 (본 웹사이트에는 계정 시스템이 없습니다)</li>
+            <li>결제 정보 (Vora는 무료 오픈소스이며 결제를 받지 않습니다)</li>
+          </ul>
 
-        <h2>2. 자동으로 수집되는 정보</h2>
-        <p>방문 통계 파악 목적으로 Google Analytics 4(이하 "GA4")를 사용합니다. GA4가 기록하는 정보는 다음과 같습니다.</p>
-        <ul class="bullets">
-          <li>페이지 URL, 방문 시각, 체류 시간, 클릭 이벤트</li>
-          <li>기기 유형, 운영체제, 브라우저, 화면 해상도, 언어 설정</li>
-          <li>유입 경로(레퍼러, UTM 파라미터)</li>
-          <li>대략적인 지역 정보(도시 단위, IP 주소는 수집 직후 익명화됨)</li>
-        </ul>
-        <p>Vora는 GA4에 <code>anonymize_ip: true</code>, <code>allow_google_signals: false</code>, <code>allow_ad_personalization_signals: false</code> 옵션을 적용해 IP 주소 저장·광고 개인화·Google 시그널 사용을 차단합니다.</p>
+          <h2>2. 자동으로 수집되는 정보</h2>
+          <p>방문 통계 파악 목적으로 Google Analytics 4(이하 "GA4")를 사용합니다. GA4가 기록하는 정보는 다음과 같습니다.</p>
+          <ul class="bullets">
+            <li>페이지 URL, 방문 시각, 체류 시간, 클릭 이벤트</li>
+            <li>기기 유형, 운영체제, 브라우저, 화면 해상도, 언어 설정</li>
+            <li>유입 경로(레퍼러, UTM 파라미터)</li>
+            <li>대략적인 지역 정보(도시 단위, IP 주소는 수집 직후 익명화됨)</li>
+          </ul>
+          <p>Vora는 GA4에 <code>anonymize_ip: true</code>, <code>allow_google_signals: false</code>, <code>allow_ad_personalization_signals: false</code> 옵션을 적용해 IP 주소 저장·광고 개인화·Google 시그널 사용을 차단합니다.</p>
 
-        <h2>3. 로컬 저장소</h2>
-        <p>브라우저 <code>localStorage</code>에 다음 값을 저장합니다. 이는 서버로 전송되지 않으며 기기 내부에만 저장됩니다.</p>
-        <ul class="bullets">
-          <li><code>voraLang</code> — 선택한 언어 (ko / en)</li>
-          <li><code>voraOS</code> — 다운로드 버튼에 표시할 운영체제 선택</li>
-        </ul>
+          <h2>3. 로컬 저장소</h2>
+          <p>브라우저 <code>localStorage</code>에 다음 값을 저장합니다. 이는 서버로 전송되지 않으며 기기 내부에만 저장됩니다.</p>
+          <ul class="bullets">
+            <li><code>voraLang</code> — 선택한 언어 (ko / en)</li>
+          </ul>
 
-        <h2>4. 제3자 제공 및 위탁</h2>
-        <p>수집된 통계 정보는 Google LLC가 처리합니다. 자세한 내용은 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 개인정보처리방침</a>과 <a href="https://support.google.com/analytics/answer/7318509" target="_blank" rel="noopener">Google Analytics 개인정보 보호</a>를 참고하세요. 이 외 제3자에게 정보를 판매·제공하지 않습니다.</p>
+          <h2>4. 제3자 제공 및 위탁</h2>
+          <p>수집된 통계 정보는 Google LLC가 처리합니다. 자세한 내용은 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 개인정보처리방침</a>과 <a href="https://support.google.com/analytics/answer/7318509" target="_blank" rel="noopener">Google Analytics 개인정보 보호</a>를 참고하세요. 이 외 제3자에게 정보를 판매·제공하지 않습니다.</p>
 
-        <h2>5. 보관 기간</h2>
-        <p>GA4 이벤트 데이터 보관 기간은 Google의 기본값인 2개월로 설정되어 있습니다. 집계·익명화된 통계는 서비스 운영 기간 동안 보관될 수 있습니다.</p>
+          <h2>5. 보관 기간</h2>
+          <p>GA4 이벤트 데이터 보관 기간은 Google의 기본값인 2개월로 설정되어 있습니다. 집계·익명화된 통계는 서비스 운영 기간 동안 보관될 수 있습니다.</p>
 
-        <h2>6. 이용자의 권리</h2>
-        <ul class="bullets">
-          <li><a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics 차단 브라우저 확장</a>을 설치해 수집을 거부할 수 있습니다.</li>
-          <li>브라우저 설정에서 JavaScript를 끄거나, uBlock Origin 등 광고·추적 차단 확장 기능을 사용해도 수집되지 않습니다.</li>
-          <li>브라우저의 <code>localStorage</code>를 초기화하면 저장된 언어·OS 선택이 삭제됩니다.</li>
-        </ul>
+          <h2>6. 이용자의 권리</h2>
+          <ul class="bullets">
+            <li><a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics 차단 브라우저 확장</a>을 설치해 수집을 거부할 수 있습니다.</li>
+            <li>브라우저 설정에서 JavaScript를 끄거나, uBlock Origin 등 광고·추적 차단 확장 기능을 사용해도 수집되지 않습니다.</li>
+            <li>브라우저의 <code>localStorage</code>를 초기화하면 저장된 언어 선택이 삭제됩니다.</li>
+          </ul>
 
-        <h2>7. 쿠키</h2>
-        <p>GA4는 <code>_ga</code>, <code>_ga_&lt;STREAM_ID&gt;</code> 등의 쿠키 또는 <code>localStorage</code>를 사용해 익명 방문자 ID를 저장할 수 있습니다. 이는 광고·개인화 목적이 아니라 고유 방문자 수 집계에만 사용됩니다.</p>
+          <h2>7. 쿠키</h2>
+          <p>GA4는 <code>_ga</code>, <code>_ga_&lt;STREAM_ID&gt;</code> 등의 쿠키 또는 <code>localStorage</code>를 사용해 익명 방문자 ID를 저장할 수 있습니다. 이는 광고·개인화 목적이 아니라 고유 방문자 수 집계에만 사용됩니다.</p>
 
-        <h2>8. 책임자</h2>
-        <p>XIU · <a href="https://xiu.kr" target="_blank" rel="noopener">xiu.kr</a> · 문의는 <a href="/issues" rel="noopener">GitHub Issues</a>로 접수됩니다.</p>
+          <h2>8. 책임자</h2>
+          <p>XIU · <a href="https://xiu.kr" target="_blank" rel="noopener">xiu.kr</a> · 문의는 <a href="/issues" rel="noopener">GitHub Issues</a>로 접수됩니다.</p>
 
-        <h2>9. 변경 이력</h2>
-        <p>본 방침이 변경되는 경우 본 페이지의 "최종 업데이트" 일자와 함께 공개됩니다.</p>
-      </div>
+          <h2>9. 변경 이력</h2>
+          <p>본 방침이 변경되는 경우 본 페이지의 "최종 업데이트" 일자와 함께 공개됩니다.</p>
+        </div>
 
-      <!-- EN -->
-      <div data-en-block hidden>
-        <p class="lede">This Privacy Policy applies to visitors of <b>https://vora.xiu.kr</b>. It covers the website only — the Vora desktop application does not transmit any personal data.</p>
+        <div data-en-block hidden>
+          <p class="lede">This Privacy Policy applies to visitors of <b>https://vora.xiu.kr</b>. It covers the website only — the Vora desktop application does not transmit any personal data.</p>
 
-        <h2>1. Information we do not collect</h2>
-        <ul class="bullets">
-          <li>Names, email addresses, phone numbers, or other direct identifiers</li>
-          <li>Account or login information (no account system exists)</li>
-          <li>Payment information (Vora is free and open source)</li>
-        </ul>
+          <h2>1. Information we do not collect</h2>
+          <ul class="bullets">
+            <li>Names, email addresses, phone numbers, or other direct identifiers</li>
+            <li>Account or login information (no account system exists)</li>
+            <li>Payment information (Vora is free and open source)</li>
+          </ul>
 
-        <h2>2. Automatically collected information</h2>
-        <p>We use Google Analytics 4 (GA4) to understand visit patterns. GA4 records:</p>
-        <ul class="bullets">
-          <li>Page URL, timestamp, time on page, click events</li>
-          <li>Device type, OS, browser, screen resolution, language</li>
-          <li>Referrer and UTM parameters</li>
-          <li>Approximate location (city level; IP is anonymized at ingest)</li>
-        </ul>
-        <p>We configure GA4 with <code>anonymize_ip: true</code>, <code>allow_google_signals: false</code>, and <code>allow_ad_personalization_signals: false</code>, which disables IP storage, Google Signals, and ad personalization.</p>
+          <h2>2. Automatically collected information</h2>
+          <p>We use Google Analytics 4 (GA4) to understand visit patterns. GA4 records:</p>
+          <ul class="bullets">
+            <li>Page URL, timestamp, time on page, click events</li>
+            <li>Device type, OS, browser, screen resolution, language</li>
+            <li>Referrer and UTM parameters</li>
+            <li>Approximate location (city level; IP is anonymized at ingest)</li>
+          </ul>
+          <p>We configure GA4 with <code>anonymize_ip: true</code>, <code>allow_google_signals: false</code>, and <code>allow_ad_personalization_signals: false</code>, which disables IP storage, Google Signals, and ad personalization.</p>
 
-        <h2>3. Local storage</h2>
-        <p>The following values are stored in your browser's <code>localStorage</code> only. They never leave your device:</p>
-        <ul class="bullets">
-          <li><code>voraLang</code> — selected language (ko / en)</li>
-          <li><code>voraOS</code> — OS selection shown on the download button</li>
-        </ul>
+          <h2>3. Local storage</h2>
+          <p>The following values are stored in your browser's <code>localStorage</code> only. They never leave your device:</p>
+          <ul class="bullets">
+            <li><code>voraLang</code> — selected language (ko / en)</li>
+          </ul>
 
-        <h2>4. Third parties</h2>
-        <p>Analytics data is processed by Google LLC. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a> and <a href="https://support.google.com/analytics/answer/7318509" target="_blank" rel="noopener">Analytics Privacy</a> for details. No data is sold or shared with other third parties.</p>
+          <h2>4. Third parties</h2>
+          <p>Analytics data is processed by Google LLC. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a> and <a href="https://support.google.com/analytics/answer/7318509" target="_blank" rel="noopener">Analytics Privacy</a> for details. No data is sold or shared with other third parties.</p>
 
-        <h2>5. Retention</h2>
-        <p>GA4 event data retention is set to Google's default of 2 months. Aggregated, anonymized statistics may be kept for the lifetime of the service.</p>
+          <h2>5. Retention</h2>
+          <p>GA4 event data retention is set to Google's default of 2 months. Aggregated, anonymized statistics may be kept for the lifetime of the service.</p>
 
-        <h2>6. Your rights</h2>
-        <ul class="bullets">
-          <li>Install the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a>.</li>
-          <li>Disable JavaScript or use a blocker (uBlock Origin, etc.).</li>
-          <li>Clear <code>localStorage</code> to remove stored language/OS preferences.</li>
-        </ul>
+          <h2>6. Your rights</h2>
+          <ul class="bullets">
+            <li>Install the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a>.</li>
+            <li>Disable JavaScript or use a blocker (uBlock Origin, etc.).</li>
+            <li>Clear <code>localStorage</code> to remove the stored language preference.</li>
+          </ul>
 
-        <h2>7. Cookies</h2>
-        <p>GA4 stores anonymous identifiers in cookies (<code>_ga</code>, <code>_ga_&lt;STREAM_ID&gt;</code>) or <code>localStorage</code>. These are used only for unique-visitor counting, never for advertising or personalization.</p>
+          <h2>7. Cookies</h2>
+          <p>GA4 stores anonymous identifiers in cookies (<code>_ga</code>, <code>_ga_&lt;STREAM_ID&gt;</code>) or <code>localStorage</code>. These are used only for unique-visitor counting, never for advertising or personalization.</p>
 
-        <h2>8. Controller</h2>
-        <p>XIU · <a href="https://xiu.kr" target="_blank" rel="noopener">xiu.kr</a> · Please file inquiries at <a href="/issues" rel="noopener">GitHub Issues</a>.</p>
+          <h2>8. Controller</h2>
+          <p>XIU · <a href="https://xiu.kr" target="_blank" rel="noopener">xiu.kr</a> · Please file inquiries at <a href="/issues" rel="noopener">GitHub Issues</a>.</p>
 
-        <h2>9. Changes</h2>
-        <p>If this policy changes, the "Last updated" date at the top of this page will be revised.</p>
-      </div>
-    </article>
+          <h2>9. Changes</h2>
+          <p>If this policy changes, the "Last updated" date at the top of this page will be revised.</p>
+        </div>
+      </article>
 
-    <p style="margin-top: 36px;"><a class="btn btn-ghost" href="/" data-ko="← 홈으로" data-en="← Back to home">← 홈으로</a></p>
-  </div>
-</section>
-</main>
-
-<footer class="footer">
-  <div class="container footer-inner">
-    <div>
-      <div class="brand">
-        <img class="brand-mark" src="/assets/logo.png" alt="" width="24" height="24" decoding="async" loading="lazy"/>
-        <span class="brand-name">Vora</span>
-      </div>
-      <p class="muted" data-ko="© 2026 XIU · MIT License" data-en="© 2026 XIU · MIT License">© 2026 XIU · MIT License</p>
+      <p style="margin-top: 36px;"><a class="btn btn-secondary" href="/" data-ko="← 홈으로" data-en="← Back to home">← 홈으로</a></p>
     </div>
-    <nav aria-label="footer">
-      <a href="/github" rel="noopener">GitHub</a>
-      <a href="/issues" rel="noopener" data-ko="버그 제보" data-en="Report a bug">버그 제보</a>
-      <a href="/download" data-ko="릴리스" data-en="Releases">릴리스</a>
-      <a href="/privacy/" data-ko="개인정보처리방침" data-en="Privacy">개인정보처리방침</a>
-      <a href="https://xiu.kr" rel="noopener">xiu.kr</a>
-    </nav>
-  </div>
-</footer>
+  </main>
+
+  <footer class="site-foot">
+    <div class="container">
+      <div class="footer-row">
+        <a class="brand" href="/">
+          <img src="/assets/logo.png" alt="" width="24" height="24" decoding="async" loading="lazy" />
+          <span>Vora</span>
+        </a>
+        <div class="footer-links">
+          <a href="/github" rel="noopener">GitHub</a>
+          <a href="/download" rel="noopener" data-ko="릴리스" data-en="Releases">릴리스</a>
+          <a href="/issues" rel="noopener" data-ko="이슈" data-en="Issues">이슈</a>
+          <a href="/privacy/" data-ko="개인정보처리방침" data-en="Privacy">개인정보처리방침</a>
+          <a href="https://xiu.kr" rel="noopener">xiu.kr</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 XIU · MIT License</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
 
 <script>
   // Minimal inline i18n for this page (shows KO/EN block based on saved lang)
-  (function(){
+  (function () {
     var lang = localStorage.getItem('voraLang');
     if (lang !== 'ko' && lang !== 'en') {
       lang = (navigator.language || 'ko').toLowerCase().startsWith('ko') ? 'ko' : 'en';
@@ -201,24 +199,29 @@
       document.documentElement.setAttribute('lang', l);
       document.documentElement.setAttribute('data-lang', l);
       localStorage.setItem('voraLang', l);
-      document.querySelectorAll('[data-ko]').forEach(function(el){
+      document.querySelectorAll('[data-ko]').forEach(function (el) {
         var ko = el.getAttribute('data-ko'), en = el.getAttribute('data-en');
         if (ko != null && en != null) el.textContent = l === 'ko' ? ko : en;
       });
-      var ko = document.querySelector('[data-ko-block]'), en = document.querySelector('[data-en-block]');
-      if (ko && en) { ko.hidden = l !== 'ko'; en.hidden = l === 'ko'; }
+      var koBlock = document.querySelector('[data-ko-block]');
+      var enBlock = document.querySelector('[data-en-block]');
+      if (koBlock && enBlock) {
+        koBlock.hidden = l !== 'ko';
+        enBlock.hidden = l === 'ko';
+      }
       var t = document.querySelector('title[data-ko]');
       if (t) document.title = l === 'ko' ? t.getAttribute('data-ko') : t.getAttribute('data-en');
-      document.querySelectorAll('[data-set-lang]').forEach(function(b){
-        b.classList.toggle('is-active', b.getAttribute('data-set-lang') === l);
+      document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+        b.classList.toggle('active', b.getAttribute('data-set-lang') === l);
       });
     }
-    document.querySelectorAll('[data-set-lang]').forEach(function(b){
-      b.addEventListener('click', function(){ apply(b.getAttribute('data-set-lang')); });
+    document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+      b.addEventListener('click', function () { apply(b.getAttribute('data-set-lang')); });
     });
     apply(lang);
-    addEventListener('scroll', function(){
-      document.getElementById('nav').classList.toggle('scrolled', scrollY > 12);
+    addEventListener('scroll', function () {
+      var n = document.getElementById('nav');
+      if (n) n.classList.toggle('scrolled', scrollY > 12);
     }, { passive: true });
   })();
 </script>
